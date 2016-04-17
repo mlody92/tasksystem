@@ -72,16 +72,16 @@ namespace TaskSystem.Users
 
         private void update(String id, String username, String fullname, String email, String role)
         {
-            SqlCommand xp = new SqlCommand("Update users set username=@username, fullname=@fullname, role=@role, email=@email) where id=@id;");
+            SqlCommand xp = new SqlCommand("Update users set username=@username, fullname=@fullname, role=@role, email=@email where id=@id;");
             xp.Parameters.AddWithValue("@id", id);
             xp.Parameters.AddWithValue("@username", username);
             xp.Parameters.AddWithValue("@fullname", fullname);
             xp.Parameters.AddWithValue("@role", role);
             xp.Parameters.AddWithValue("@email", email);
             TaskSystem.tools.InsertUpdateData(xp);
-            //DataTable dt = TaskSystem.tools.GetData("SELECT [id], [username], [fullname], [role], [email] FROM [users] ORDER BY [id]");
-            //GridView1.DataSource = dt;
-            //GridView1.DataBind();
+            DataTable dt = TaskSystem.tools.GetData("SELECT [id], [username], [fullname], [role], [email] FROM [users] ORDER BY [id]");
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
 
         }
 
@@ -215,8 +215,7 @@ namespace TaskSystem.Users
                 {
                     GridViewRow gvrow = GridView1.Rows[index];
                     hfCount.Value = HttpUtility.HtmlDecode(gvrow.Cells[1].Text).ToString();
-                    Text1.Attributes.Add("placeholder", HttpUtility.HtmlDecode(gvrow.Cells[2].Text).ToString());
-                    //Text1.Value = HttpUtility.HtmlDecode(gvrow.Cells[2].Text).ToString();
+                    Text1.Value = HttpUtility.HtmlDecode(gvrow.Cells[2].Text).ToString();
                     Text2.Value = HttpUtility.HtmlDecode(gvrow.Cells[3].Text);
                     Text3.Value = HttpUtility.HtmlDecode(gvrow.Cells[5].Text);
                     System.Text.StringBuilder sb = new System.Text.StringBuilder();
