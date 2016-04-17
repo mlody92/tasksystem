@@ -205,7 +205,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
-                        Are you sure you want to delete the record?
+                        Are you sure you want to delete this user?
                     </div>
 
                 </div>
