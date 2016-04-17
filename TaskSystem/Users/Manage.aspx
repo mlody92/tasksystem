@@ -23,14 +23,14 @@
                         <asp:BoundField DataField="fullname" HeaderText="Fullname" SortExpression="fullname" />
                         <asp:BoundField DataField="role" HeaderText="Role" SortExpression="role" />
                         <asp:BoundField DataField="email" HeaderText="Email" SortExpression="email" />
-                        <asp:ButtonField CommandName="editRecord" ControlStyle-CssClass="btn btn-info" Text="Edit" HeaderText="Edit Record" />
-                        <asp:ButtonField CommandName="deleteRecord" ControlStyle-CssClass="btn btn-info" Text="D" HeaderText="Edit Record" />
-                        <asp:TemplateField>
+                        <asp:ButtonField CommandName="editRecord" Text="Edit" ItemStyle-Width="10px"/>
+                        <asp:ButtonField CommandName="deleteRecord" Text="Delete" ItemStyle-Width="10px"/>
+                        <%--<asp:TemplateField>
                             <ItemTemplate>
-                                <asp:LinkButton ID="buttonEdit" runat="server" data-toggle="modal" data-target="#editModal" CommandName="editRecord">LinkButton</asp:LinkButton>
+                                <asp:LinkButton ID="buttonEdit" runat="server" CommandName="editRecord">LinkButton</asp:LinkButton>
                             </ItemTemplate>
 
-                        </asp:TemplateField>
+                        </asp:TemplateField>--%>
                     </Columns>
                 </asp:GridView>
                 <asp:HiddenField ID="hfCount" runat="server" Value="0" />
@@ -171,18 +171,6 @@
                             </div>
                             <%--<div class="clearfix"></div>--%>
                         </div>
-                        <div class="form-group">
-                            <label for="inputPassword" class="col-sm-2 control-label">Password</label>
-                            <div class="col-sm-8">
-                                <input id="Password1" type="password" class="form-control1" placeholder="Password" runat="server" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword" class="col-sm-2 control-label">Confirm Password</label>
-                            <div class="col-sm-8">
-                                <input id="Password4" type="password" class="form-control1" placeholder="Confirm Password" runat="server" />
-                            </div>
-                        </div>
                         <div class="but_list">
                             <div class="alert alert-success" role="alert" id="Div2" runat="server" visible="false">
                                 <asp:Label ID="Label3" runat="server"></asp:Label>
@@ -194,11 +182,9 @@
 
                     </div>
 
-
-
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="Button1" class="btn btn-default" runat="server" Text="Save" />
+                    <asp:Button ID="Button1" class="btn btn-default" runat="server" Text="Save" OnClick="Button2_Click"/>
                     <asp:Button ID="Button2" class="btn btn-default" runat="server" Text="Close" data-dismiss="modal" />
                 </div>
             </div>
@@ -219,12 +205,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
-
                         Are you sure you want to delete the record?
-
                     </div>
-
-
 
                 </div>
                 <div class="modal-footer">

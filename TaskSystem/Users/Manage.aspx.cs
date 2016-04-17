@@ -39,6 +39,12 @@ namespace TaskSystem.Users
             insert(Text8.Value, Text9.Value, Text10.Value, "test", Password2.Value);
         }
 
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            update(hfCount.Value, Text1.Value, Text2.Value, Text3.Value, "test");
+        }
+
+
         private void insert(String username, String fullname, String email, String role, String password)
         {
             SqlCommand xp = new SqlCommand("Insert Into users(username, fullname, password, role, email,avatar) Values (@username, @fullname, @password, @role, @email,@avatar)");
@@ -48,17 +54,35 @@ namespace TaskSystem.Users
             xp.Parameters.AddWithValue("@role", role);
             xp.Parameters.AddWithValue("@email", email);
 
-            FileStream fs = new FileStream( Server.MapPath("/images/")+"1.jpg", FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(Server.MapPath("/images/") + "1.jpg", FileMode.Open, FileAccess.Read);
             BinaryReader br = new BinaryReader(fs);
             Byte[] bytes = br.ReadBytes((Int32)fs.Length);
             xp.Parameters.Add("@avatar", SqlDbType.Binary).Value = bytes;
             TaskSystem.tools.InsertUpdateData(xp);
+            DataTable dt = TaskSystem.tools.GetData("SELECT [id], [username], [fullname], [role], [email] FROM [users] ORDER BY [id]");
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
 
             //if (IsPostBack)
             //{
             //    Label1.Text = ("Poprawnie dodano użytkownika.");
             //    successId.Visible = true;
             //}
+        }
+
+        private void update(String id, String username, String fullname, String email, String role)
+        {
+            SqlCommand xp = new SqlCommand("Update users set username=@username, fullname=@fullname, role=@role, email=@email) where id=@id;");
+            xp.Parameters.AddWithValue("@id", id);
+            xp.Parameters.AddWithValue("@username", username);
+            xp.Parameters.AddWithValue("@fullname", fullname);
+            xp.Parameters.AddWithValue("@role", role);
+            xp.Parameters.AddWithValue("@email", email);
+            TaskSystem.tools.InsertUpdateData(xp);
+            //DataTable dt = TaskSystem.tools.GetData("SELECT [id], [username], [fullname], [role], [email] FROM [users] ORDER BY [id]");
+            //GridView1.DataSource = dt;
+            //GridView1.DataBind();
+
         }
 
         //    private void GetData()
@@ -190,8 +214,10 @@ namespace TaskSystem.Users
                 if (e.CommandName.Equals("editRecord"))
                 {
                     GridViewRow gvrow = GridView1.Rows[index];
-                    Text1.Value = HttpUtility.HtmlDecode(gvrow.Cells[3].Text).ToString();
-                    Text2.Value = HttpUtility.HtmlDecode(gvrow.Cells[4].Text);
+                    hfCount.Value = HttpUtility.HtmlDecode(gvrow.Cells[1].Text).ToString();
+                    Text1.Attributes.Add("placeholder", HttpUtility.HtmlDecode(gvrow.Cells[2].Text).ToString());
+                    //Text1.Value = HttpUtility.HtmlDecode(gvrow.Cells[2].Text).ToString();
+                    Text2.Value = HttpUtility.HtmlDecode(gvrow.Cells[3].Text);
                     Text3.Value = HttpUtility.HtmlDecode(gvrow.Cells[5].Text);
                     System.Text.StringBuilder sb = new System.Text.StringBuilder();
                     sb.Append(@"<script type='text/javascript'>");

@@ -47,6 +47,7 @@ namespace TaskSystem.Account
                 TaskSystem.tools.InsertUpdateData(cmd);
                 lblMessage.ForeColor = System.Drawing.Color.Green;
                 lblMessage.Text = "File Uploaded Successfully";
+                Session["User_avatar"] = Convert.ToBase64String(bytes, 0, bytes.Length);
             }
             else
             {
