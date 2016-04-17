@@ -57,3 +57,4 @@ D:\TaskSystem\TaskSystem\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 D:\TaskSystem\TaskSystem\bin\DotNetOpenAuth.AspNet.xml
 D:\TaskSystem\TaskSystem\obj\Debug\TaskSystem.dll
 D:\TaskSystem\TaskSystem\obj\Debug\TaskSystem.pdb
+D:\TaskSystem\TaskSystem\obj\Debug\TaskSystem.csprojResolveAssemblyReference.cache
