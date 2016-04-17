@@ -17,33 +17,66 @@ namespace TaskSystem.Users
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            //if (IsPostBack)
-            //    GetData();
             DataTable dt = TaskSystem.tools.GetData("SELECT [id], [username], [fullname], [role], [email] FROM [users] ORDER BY [id]");
             GridView1.DataSource = dt;
             GridView1.DataBind();
         }
 
-        //    protected void OnPaging(object sender, GridViewPageEventArgs e)
-        //    {
-        //        GridView1.PageIndex = e.NewPageIndex;
-        //        GridView1.DataBind();
-        //        SetData();
-        //    }
-
-
-
         protected void Button1_Click(object sender, EventArgs e)
         {
-            insert(Text8.Value, Text9.Value, Text10.Value, "test", Password2.Value);
+            if (checkLogin(Text8.Value))
+            {
+                insert(Text8.Value, Text9.Value, Text10.Value, "test", Password2.Value);
+            }
+            else
+            {
+                ShowMessageError();
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                sb.Append(@"<script type='text/javascript'>");
+                sb.Append("$('#myModalUser').modal('show');");
+                sb.Append(@"</script>");
+                ClientScript.RegisterStartupScript(this.GetType(), "ModalScript", sb.ToString());
+            }
         }
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            update(hfCount.Value, Text1.Value, Text2.Value, Text3.Value, "test");
+            if (checkLogin(Text1.Value))
+            {
+                update(hfCount.Value, Text1.Value, Text2.Value, Text3.Value, "test");
+            }
+            else
+            {
+                ShowMessageError();
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                sb.Append(@"<script type='text/javascript'>");
+                sb.Append("$('#editModal').modal('show');");
+                sb.Append(@"</script>");
+                ClientScript.RegisterStartupScript(this.GetType(), "ModalScript", sb.ToString());
+            }
         }
 
+        private bool checkLogin(string username)
+        {
+            bool flaga = true;
+
+            SqlConnection vid = TaskSystem.tools.GetConnection();
+            {
+                SqlCommand xp = new SqlCommand("SELECT * FROM users WHERE username=@username;", vid);
+                xp.Parameters.AddWithValue("@username", username);
+                vid.Open();
+                DataSet dataSet = new DataSet();
+                SqlDataAdapter datauser = new SqlDataAdapter(xp);
+                datauser.Fill(dataSet);
+                bool flagaSql = dataSet.Tables[0].Rows.Count > 0;
+                if (flagaSql.Equals(true))
+                {
+                    flaga = false;
+                }
+                vid.Close();
+            }
+            return flaga;
+        }
 
         private void insert(String username, String fullname, String email, String role, String password)
         {
@@ -62,12 +95,6 @@ namespace TaskSystem.Users
             DataTable dt = TaskSystem.tools.GetData("SELECT [id], [username], [fullname], [role], [email] FROM [users] ORDER BY [id]");
             GridView1.DataSource = dt;
             GridView1.DataBind();
-
-            //if (IsPostBack)
-            //{
-            //    Label1.Text = ("Poprawnie dodano użytkownika.");
-            //    successId.Visible = true;
-            //}
         }
 
         private void update(String id, String username, String fullname, String email, String role)
@@ -177,6 +204,17 @@ namespace TaskSystem.Users
             StringBuilder sb = new StringBuilder();
             sb.Append("<script type = 'text/javascript'>");
             sb.Append("swal(\"Good job!\", \"You deleted " + count.ToString() + " users\",\"success\")");
+            sb.Append("</script>");
+            ClientScript.RegisterStartupScript(this.GetType(),
+                            "script", sb.ToString());
+        }
+
+        private void ShowMessageError()
+        {
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<script type = 'text/javascript'>");
+            sb.Append("swal(\"Error!\", \"Username already exist in database.\",\"error\")");
             sb.Append("</script>");
             ClientScript.RegisterStartupScript(this.GetType(),
                             "script", sb.ToString());
