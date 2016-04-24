@@ -809,7 +809,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="form-group">
                                 <label for="focusedinput" class="col-sm-2 control-label">Project</label>
                                 <div class="col-sm-8">
-                                    <asp:DropDownList ID="DropDownList1" runat="server" class="form-control1" AppendDataBoundItems="true">
+                                    <asp:DropDownList ID="DropDownList1" runat="server" class="form-control1" AppendDataBoundItems="false">
                                         <asp:ListItem Enabled="true" Selected="True" Text="Please select project"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
@@ -817,7 +817,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="form-group">
                                 <label for="focusedinput" class="col-sm-2 control-label">Issue type</label>
                                 <div class="col-sm-8">
-                                    <asp:DropDownList ID="DropDownList2" runat="server" class="form-control1" AppendDataBoundItems="true">
+                                    <asp:DropDownList ID="DropDownList2" runat="server" class="form-control1" AppendDataBoundItems="false">
                                         <asp:ListItem Enabled="true" Selected="True" Text="Please select type"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
@@ -849,7 +849,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="form-group">
                                 <label for="focusedinput" class="col-sm-2 control-label">Assigne</label>
                                 <div class="col-sm-8">
-                                    <asp:DropDownList ID="DropDownList7" runat="server" class="form-control1" AppendDataBoundItems="true">
+                                    <asp:DropDownList ID="DropDownList7" runat="server" class="form-control1" AppendDataBoundItems="false">
                                         <asp:ListItem Enabled="true" Selected="True" Text="Please select user"></asp:ListItem>
                                     </asp:DropDownList>
 
