@@ -30,7 +30,13 @@ namespace TaskSystem
                 Label1.Text = Session["User_Fullname"].ToString();
                 //Label2.Text = Session["User_Role"].ToString(); 
                 Image1.ImageUrl = "data:image/jpg;base64," + Session["User_avatar"].ToString();
-                dataProject();
+                
+                if (!Page.IsPostBack)
+                {
+                    dataProject();
+
+                }
+                
 
             }
         }
@@ -82,8 +88,33 @@ namespace TaskSystem
             DropDownList6.DataSource = dt7;
             DropDownList6.DataBind();
             DropDownList6.Items.Insert(0, new ListItem("", ""));
+        }
+
+        protected void SelectedChange(object sender, EventArgs e)
+        {
+            dataProject(DropDownList1.SelectedItem.Value);
+        }
+
+        private void dataProject(String project_id)
+        {
+            DataTable dt6 = TaskSystem.tools.GetData("SELECT [id], [version] FROM [project_version] WHERE [status]='released' AND [project_id]='" + project_id + "' ORDER BY [id]");
+            DropDownList5.Items.Clear();
+            DropDownList5.DataTextField = "version";
+            DropDownList5.DataValueField = "id";
+            DropDownList5.DataSource = dt6;
+            DropDownList5.DataBind();
+            DropDownList5.Items.Insert(0, new ListItem("", ""));
+
+            DataTable dt7 = TaskSystem.tools.GetData("SELECT [id], [version] FROM [project_version] WHERE [status]='open' AND [project_id]='" + project_id + "' ORDER BY [id]");
+            DropDownList6.Items.Clear();
+            DropDownList6.DataTextField = "version";
+            DropDownList6.DataValueField = "id";
+            DropDownList6.DataSource = dt7;
+            DropDownList6.DataBind();
+            DropDownList6.Items.Insert(0, new ListItem("", ""));
 
         }
+
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
@@ -98,7 +129,7 @@ namespace TaskSystem
 
         protected void saveIssue_Click(object sender, EventArgs e)
         {
-            insertData(Text3.Value, DropDownList1.SelectedItem.Value, DropDownList2.SelectedItem.Value, DropDownList3.SelectedItem.Value, DropDownList4.SelectedItem.Value, DropDownList5.SelectedItem.Value, DropDownList6.SelectedItem.Value, DropDownList7.SelectedItem.Value, TextArea1.InnerText, getNextProjectIndex(DropDownList1.SelectedItem.Value));
+            insertData(Text3.Value, DropDownList1.SelectedValue, DropDownList2.SelectedItem.Value, DropDownList3.SelectedItem.Value, DropDownList4.SelectedItem.Value, DropDownList5.SelectedItem.Value, DropDownList6.SelectedItem.Value, DropDownList7.SelectedItem.Value, TextArea1.InnerText, getNextProjectIndex(DropDownList1.SelectedItem.Value));
             ShowMessage();
         }
 

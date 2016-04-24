@@ -770,19 +770,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </asp:ContentPlaceHolder>
 
                         <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
+                            <div class="modal-dialog">
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Create issue</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-horizontal">
-                            <%--<p>Some text in the modal.</p>--%>
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Create issue</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-horizontal">
+                                            <%--<p>Some text in the modal.</p>--%>
 
-                            <%-- //Project
+                                            <%-- //Project
                             //Issue type
                             //Summary
                             //Priority
@@ -792,79 +792,120 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             //Assigne
                             //Description
                             //Bug cause--%>
-                            <div class="form-group">
-                                <label for="focusedinput" class="col-sm-2 control-label">Title</label>
-                                <div class="col-sm-8">
-                                    <input id="Text3" type="text" runat="server" class="form-control1" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="focusedinput" class="col-sm-2 control-label">Project</label>
-                                <div class="col-sm-8">
-                                    <asp:DropDownList ID="DropDownList1" runat="server" class="form-control1">
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="focusedinput" class="col-sm-2 control-label">Issue type</label>
-                                <div class="col-sm-8">
-                                    <asp:DropDownList ID="DropDownList2" runat="server" class="form-control1">
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="focusedinput" class="col-sm-2 control-label">Priority</label>
-                                <div class="col-sm-8">
-                                    <asp:DropDownList ID="DropDownList3" runat="server" class="form-control1">
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="focusedinput" class="col-sm-2 control-label">Sprint</label>
-                                <div class="col-sm-8">
-                                    <asp:DropDownList ID="DropDownList4" runat="server" class="form-control1"></asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="focusedinput" class="col-sm-2 control-label">Affect version</label>
-                                <div class="col-sm-8">
-                                    <asp:DropDownList ID="DropDownList5" runat="server" class="form-control1">
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="focusedinput" class="col-sm-2 control-label">Fix version</label>
-                                <div class="col-sm-8">
-                                    <asp:DropDownList ID="DropDownList6" runat="server" class="form-control1">
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="focusedinput" class="col-sm-2 control-label">Assigne</label>
-                                <div class="col-sm-8">
-                                    <asp:DropDownList ID="DropDownList7" runat="server" class="form-control1">
-                                    </asp:DropDownList>
+                                            <div class="form-group">
+                                                <label for="focusedinput" class="col-sm-2 control-label">Title</label>
+                                                <div class="col-sm-8">
+                                                    <input id="Text3" type="text" runat="server" class="form-control1" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="focusedinput" class="col-sm-2 control-label">Project</label>
+                                                <div class="col-sm-8">
 
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="focusedinput" class="col-sm-2 control-label">Summary</label>
-                                <div class="col-sm-8">
-                                    <textarea id="TextArea1" cols="41" rows="5" runat="server"></textarea>
+                                                    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" />
 
+                                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                                        <ContentTemplate>
+                                                            <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="SelectedChange" EventName="SelectedChange" AppendDataBoundItems="true" class="form-control1" ClientIDMode="Static" AutoPostBack="true" />
+                                                        </ContentTemplate>
+                                                        <Triggers>
+                                                            <asp:AsyncPostBackTrigger ControlID="DropDownList1" />
+                                                        </Triggers>
+                                                    </asp:UpdatePanel>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="focusedinput" class="col-sm-2 control-label">Issue type</label>
+                                                <div class="col-sm-8">
+                                                    <asp:DropDownList ID="DropDownList2" runat="server" class="form-control1">
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="focusedinput" class="col-sm-2 control-label">Priority</label>
+                                                <div class="col-sm-8">
+                                                    <asp:DropDownList ID="DropDownList3" runat="server" class="form-control1">
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="focusedinput" class="col-sm-2 control-label">Sprint</label>
+                                                <div class="col-sm-8">
+                                                    <asp:DropDownList ID="DropDownList4" runat="server" class="form-control1"></asp:DropDownList>
+                                                </div>
+                                            </div>
+
+                                             <div class="form-group">
+                                                <label for="focusedinput" class="col-sm-2 control-label">Affect version</label>
+                                                <div class="col-sm-8">
+
+                                                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                                        <ContentTemplate>
+                                                            <asp:DropDownList ID="DropDownList5" runat="server" AppendDataBoundItems="true" class="form-control1" />
+                                                        </ContentTemplate>
+                                                        <Triggers>
+                                                            <asp:AsyncPostBackTrigger ControlID="DropDownList5" />
+                                                        </Triggers>
+                                                    </asp:UpdatePanel>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="focusedinput" class="col-sm-2 control-label">Fix version</label>
+                                                <div class="col-sm-8">
+
+                                                    <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                                                        <ContentTemplate>
+                                                            <asp:DropDownList ID="DropDownList6" runat="server" AppendDataBoundItems="true" class="form-control1" />
+                                                        </ContentTemplate>
+                                                        <Triggers>
+                                                            <asp:AsyncPostBackTrigger ControlID="DropDownList6" />
+                                                        </Triggers>
+                                                    </asp:UpdatePanel>
+                                                </div>
+                                            </div>
+
+
+                                            <%--<div class="form-group">
+                                                <label for="focusedinput" class="col-sm-2 control-label">Affect version</label>
+                                                <div class="col-sm-8">
+                                                   <%-- <asp:DropDownList ID="DropDownList5" runat="server" class="form-control1">
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </div>--%>
+                                            <%--<div class="form-group">
+                                                <label for="focusedinput" class="col-sm-2 control-label">Fix version</label>
+                                                <div class="col-sm-8">
+                                                    <asp:DropDownList ID="DropDownList6" runat="server" class="form-control1">
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </div>--%>
+                                            <div class="form-group">
+                                                <label for="focusedinput" class="col-sm-2 control-label">Assigne</label>
+                                                <div class="col-sm-8">
+                                                    <asp:DropDownList ID="DropDownList7" runat="server" class="form-control1">
+                                                    </asp:DropDownList>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="focusedinput" class="col-sm-2 control-label">Summary</label>
+                                                <div class="col-sm-8">
+                                                    <textarea id="TextArea1" cols="41" rows="5" runat="server"></textarea>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <asp:Button ID="Button1" class="btn btn-default" runat="server" Text="Save" OnClick="saveIssue_Click" />
+                                        <asp:Button ID="Button2" class="btn btn-default" runat="server" Text="Close" data-dismiss="modal" />
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <asp:Button ID="Button1" class="btn btn-default" runat="server" Text="Save" OnClick="saveIssue_Click"/>
-                        <asp:Button ID="Button2" class="btn btn-default" runat="server" Text="Close" data-dismiss="modal" />
-                    </div>
-                </div>
-
-            </div>
-        </div>
 
 
 
@@ -891,7 +932,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
-        
+
 
     </form>
 </body>
