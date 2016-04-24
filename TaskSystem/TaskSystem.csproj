@@ -138,6 +138,7 @@
     <Content Include="index.aspx" />
     <Content Include="issues.aspx" />
     <Content Include="Issues\Manage.aspx" />
+    <Content Include="Issues\Priority.aspx" />
     <Content Include="js\sweetalert.min.js" />
     <Content Include="login.aspx" />
     <Content Include="packages.config" />
@@ -150,7 +151,7 @@
     <Content Include="fonts\Sn-0zpaF2c3wYt9xdgoYFfk_vArhqVIZ0nv9q090hN8.woff2" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Projects\Manage.aspx" />
-    <Content Include="Projects\Types.aspx" />
+    <Content Include="Issues\Types.aspx" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.js" />
@@ -296,6 +297,13 @@
     <Compile Include="Issues\Manage.aspx.designer.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Issues\Priority.aspx.cs">
+      <DependentUpon>Priority.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Issues\Priority.aspx.designer.cs">
+      <DependentUpon>Priority.aspx</DependentUpon>
+    </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -310,11 +318,11 @@
     <Compile Include="Projects\Manage.aspx.designer.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Projects\Types.aspx.cs">
+    <Compile Include="Issues\Types.aspx.cs">
       <DependentUpon>Types.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Projects\Types.aspx.designer.cs">
+    <Compile Include="Issues\Types.aspx.designer.cs">
       <DependentUpon>Types.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

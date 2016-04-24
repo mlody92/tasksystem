@@ -74,11 +74,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <span>Projects</span></a>
                             <ul class="sub-menu-list">
                                 <li><a href="/Projects/Manage.aspx">Manage</a> </li>
-                                <li><a href="/Projects/Types.aspx">Types</a> </li>
                             </ul>
                         </li>
                         <li><a href="forms.html"><i class="lnr lnr-spell-check"></i><span>Tasks</span></a></li>
+                        <li class="menu-list">
+                            <a href="#"><i class="lnr lnr-cog"></i>
+                                <span>Issues</span></a>
+                            <ul class="sub-menu-list">
+                                <li><a href="/Issues/Types.aspx">Types</a> </li>
+                                <li><a href="/Issues/Priority.aspx">Priority</a> </li>
+                            </ul>
+                        </li>
                         <li><a href="issues.aspx"><i class="lnr lnr-menu"></i><span>Issues</span></a></li>
+
+
+
                         <li class="menu-list"><a href="#"><i class="lnr lnr-envelope"></i><span>Users</span></a>
                             <ul class="sub-menu-list">
                                 <li><a href="/Users/Manage.aspx">Manage</a> </li>
@@ -800,7 +810,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             //Assigne
                             //Description
                             //Bug cause--%>
-                              <div class="form-group">
+                            <div class="form-group">
                                 <label for="focusedinput" class="col-sm-2 control-label">Title</label>
                                 <div class="col-sm-8">
                                     <input id="Text3" type="text" runat="server" class="form-control1" />
