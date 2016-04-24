@@ -7,7 +7,7 @@
     <div class="bs-example5" data-example-id="default-media">
         <div class="media">
             <div class="panel-body1">
-                <asp:GridView ID="GridView1" runat="server" class="table table-striped" AutoGenerateColumns="False" DataKeyNames="id" >
+                <asp:GridView ID="GridView1" runat="server" class="table table-striped" AutoGenerateColumns="False" DataKeyNames="id" OnRowCommand="GridView1_RowCommand" >
                     <Columns>
                         <asp:BoundField DataField="id" HeaderText="id" SortExpression="id" />
                         <asp:BoundField DataField="title" HeaderText="Title" SortExpression="title" />
