@@ -61,6 +61,12 @@ namespace TaskSystem
             DropDownList3.DataSource = dt4;
             DropDownList3.DataBind();
 
+            DataTable dt5 = TaskSystem.tools.GetData("SELECT [id], [name] FROM [sprint] ORDER BY [id]");
+            DropDownList4.DataTextField = "name";
+            DropDownList4.DataValueField = "id";
+            DropDownList4.DataSource = dt5;
+            DropDownList4.DataBind();
+
         }
 
         protected void LinkButton1_Click(object sender, EventArgs e)
