@@ -67,6 +67,22 @@ namespace TaskSystem
             DropDownList4.DataSource = dt5;
             DropDownList4.DataBind();
 
+            DataTable dt6 = TaskSystem.tools.GetData("SELECT [id], [version] FROM [project_version] WHERE [status]='released' ORDER BY [id]");
+            DropDownList5.Items.Clear();
+            DropDownList5.DataTextField = "version";
+            DropDownList5.DataValueField = "id";
+            DropDownList5.DataSource = dt6;
+            DropDownList5.DataBind();
+            DropDownList5.Items.Insert(0, new ListItem("", ""));
+
+            DataTable dt7 = TaskSystem.tools.GetData("SELECT [id], [version] FROM [project_version] WHERE [status]='open' ORDER BY [id]");
+            DropDownList6.Items.Clear();
+            DropDownList6.DataTextField = "version";
+            DropDownList6.DataValueField = "id";
+            DropDownList6.DataSource = dt7;
+            DropDownList6.DataBind();
+            DropDownList6.Items.Insert(0, new ListItem("", ""));
+
         }
 
         protected void LinkButton1_Click(object sender, EventArgs e)
