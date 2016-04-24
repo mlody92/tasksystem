@@ -98,13 +98,13 @@ namespace TaskSystem
 
         protected void saveIssue_Click(object sender, EventArgs e)
         {
-            insertData(Text3.Value, DropDownList1.SelectedItem.Value, DropDownList2.SelectedItem.Value, DropDownList3.SelectedItem.Value, DropDownList4.SelectedItem.Value, DropDownList5.SelectedItem.Value, DropDownList6.SelectedItem.Value, DropDownList7.SelectedItem.Value, TextArea1.InnerText);
+            insertData(Text3.Value, DropDownList1.SelectedItem.Value, DropDownList2.SelectedItem.Value, DropDownList3.SelectedItem.Value, DropDownList4.SelectedItem.Value, DropDownList5.SelectedItem.Value, DropDownList6.SelectedItem.Value, DropDownList7.SelectedItem.Value, TextArea1.InnerText, getNextProjectIndex(DropDownList1.SelectedItem.Value));
             ShowMessage();
         }
 
-        private void insertData(String title, String projectId, String typeId, String priorityId,String sprintId, String affectVersionId, String fixVersionId, String assigneId, String description)
+        private void insertData(String title, String projectId, String typeId, String priorityId, String sprintId, String affectVersionId, String fixVersionId, String assigneId, String description, String issueIndex)
         {
-            SqlCommand xp = new SqlCommand("Insert Into issue (title, project_id, type_id, priority_id,sprint_id,affect_version_id, fix_version_id, assigne_id, summary) Values (@title,@projectId,@typeId,@priorityId, @sprintId, @affectVersionId, @fixVersionId, @assigneId, @description)");
+            SqlCommand xp = new SqlCommand("Insert Into issue (title, project_id, type_id, priority_id,sprint_id,affect_version_id, fix_version_id, assigne_id, summary, issueIndex) Values (@title,@projectId,@typeId,@priorityId, @sprintId, @affectVersionId, @fixVersionId, @assigneId, @description, @issueIndex)");
             xp.Parameters.AddWithValue("@title", title);
             xp.Parameters.AddWithValue("@projectId", projectId);
             xp.Parameters.AddWithValue("@typeId", typeId);
@@ -114,6 +114,7 @@ namespace TaskSystem
             xp.Parameters.AddWithValue("@fixVersionId", fixVersionId);
             xp.Parameters.AddWithValue("@assigneId", assigneId);
             xp.Parameters.AddWithValue("@description", description);
+            xp.Parameters.AddWithValue("@issueIndex", issueIndex);
             TaskSystem.tools.InsertUpdateData(xp);
         }
 
@@ -126,6 +127,28 @@ namespace TaskSystem
             sb.Append("</script>");
             Page.ClientScript.RegisterStartupScript(this.GetType(),
                             "script", sb.ToString());
+        }
+
+        public String getNextProjectIndex(string id)
+        {
+            SqlConnection vid = TaskSystem.tools.GetConnection();
+            int index=0;
+            {
+                SqlCommand xp = new SqlCommand("SELECT isNull(Max(issueIndex),0) as number FROM issue WHERE project_id=@id;", vid);
+                xp.Parameters.AddWithValue("@id", id);
+                vid.Open();
+                DataSet dataSet = new DataSet();
+                SqlDataAdapter datauser = new SqlDataAdapter(xp);
+                datauser.Fill(dataSet);
+                bool flagaSql = dataSet.Tables[0].Rows.Count > 0;
+                if (flagaSql.Equals(true))
+                {
+                    index = Int32.Parse(dataSet.Tables[0].Rows[0]["number"].ToString());
+                }
+                vid.Close();
+            }
+            index=index+1;
+            return index.ToString();
         }
     }
 }

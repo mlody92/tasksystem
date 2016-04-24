@@ -12,6 +12,8 @@
                         <asp:BoundField DataField="id" HeaderText="id" SortExpression="id" />
                         <asp:BoundField DataField="title" HeaderText="Title" SortExpression="title" />
                         <asp:BoundField DataField="project" HeaderText="Project" SortExpression="project" />
+                        <asp:BoundField DataField="short" HeaderText="Short" SortExpression="short" />
+                        <asp:BoundField DataField="issueIndex" HeaderText="IssueIndex" SortExpression="issueIndex" />
                         <asp:BoundField DataField="priority" HeaderText="Priority" SortExpression="priority" />
                         <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
                         <asp:BoundField DataField="sprint" HeaderText="Sprint" SortExpression="sprint" />
