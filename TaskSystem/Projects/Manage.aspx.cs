@@ -21,37 +21,39 @@ namespace TaskSystem.Projects
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            insertData(Text1.Value);
+            insertData(Text1.Value, Text3.Value);
             refresh();
             ShowMessageAdd("Project");
         }
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            updateData(hfCount.Value, Text2.Value);
+            updateData(hfCount.Value, Text2.Value, Text4.Value);
             refresh();
             ShowMessageEdit("Project");
         }
 
         private void refresh()
         {
-            DataTable dt = TaskSystem.tools.GetData("SELECT [id], [project] FROM [project] ORDER BY [id]");
+            DataTable dt = TaskSystem.tools.GetData("SELECT [id], [project], [short] FROM [project] ORDER BY [id]");
             GridView1.DataSource = dt;
             GridView1.DataBind();
         }
 
-        private void insertData(String project)
+        private void insertData(String project, String shortName)
         {
-            SqlCommand xp = new SqlCommand("Insert Into project(project) Values (@project)");
+            SqlCommand xp = new SqlCommand("Insert Into project(project, short) Values (@project,@shortName)");
             xp.Parameters.AddWithValue("@project", project);
+            xp.Parameters.AddWithValue("@shortName", shortName);
             TaskSystem.tools.InsertUpdateData(xp);
         }
 
-        private void updateData(String id, String project)
+        private void updateData(String id, String project, String shortName)
         {
-            SqlCommand xp = new SqlCommand("Update project set project=@project where id=@id;");
+            SqlCommand xp = new SqlCommand("Update project set project=@project, short=@shortName where id=@id;");
             xp.Parameters.AddWithValue("@id", id);
             xp.Parameters.AddWithValue("@project", project);
+            xp.Parameters.AddWithValue("@shortName", shortName);
             TaskSystem.tools.InsertUpdateData(xp);
         }
 

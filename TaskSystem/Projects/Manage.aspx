@@ -14,6 +14,7 @@
                     <Columns>
                         <asp:BoundField DataField="id" HeaderText="id" SortExpression="id" />
                         <asp:BoundField DataField="project" HeaderText="Project" SortExpression="project" />
+                        <asp:BoundField DataField="short" HeaderText="Short" SortExpression="short" />
                         <asp:ButtonField CommandName="versionRecord" Text="Version" ItemStyle-Width="10px" />
                         <asp:ButtonField CommandName="editRecord" Text="Edit" ItemStyle-Width="10px" />
                         <asp:ButtonField CommandName="deleteRecord" Text="Delete" ItemStyle-Width="10px" />
@@ -43,6 +44,12 @@
                                 <input id="Text1" runat="server" type="text" class="form-control1" placeholder="Project name" />
                             </div>
                         </div>
+                        <div class="form-group mb-n">
+                            <label class="col-md-2 control-label">Short name</label>
+                            <div class="col-md-8">
+                                <input id="Text3" runat="server" type="text" class="form-control1" placeholder="Short name" />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -68,6 +75,12 @@
                             <label class="col-md-2 control-label">Project name</label>
                             <div class="col-md-8">
                                 <input id="Text2" runat="server" type="text" class="form-control1" />
+                            </div>
+                        </div>
+                         <div class="form-group mb-n">
+                            <label class="col-md-2 control-label">Short name</label>
+                            <div class="col-md-8">
+                                <input id="Text4" runat="server" type="text" class="form-control1" placeholder="Short name" />
                             </div>
                         </div>
                     </div>
