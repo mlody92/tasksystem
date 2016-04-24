@@ -14,6 +14,7 @@
                     <Columns>
                         <asp:BoundField DataField="id" HeaderText="id" SortExpression="id" />
                         <asp:BoundField DataField="project" HeaderText="Project" SortExpression="project" />
+                        <asp:ButtonField CommandName="versionRecord" Text="Version" ItemStyle-Width="10px" />
                         <asp:ButtonField CommandName="editRecord" Text="Edit" ItemStyle-Width="10px" />
                         <asp:ButtonField CommandName="deleteRecord" Text="Delete" ItemStyle-Width="10px" />
                     </Columns>

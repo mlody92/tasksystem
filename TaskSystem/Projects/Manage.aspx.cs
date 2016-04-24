@@ -28,12 +28,13 @@ namespace TaskSystem.Projects
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            updateData(hfCount.Value,Text2.Value);
+            updateData(hfCount.Value, Text2.Value);
             refresh();
             ShowMessageEdit("Project");
         }
 
-        private void refresh() {
+        private void refresh()
+        {
             DataTable dt = TaskSystem.tools.GetData("SELECT [id], [project] FROM [project] ORDER BY [id]");
             GridView1.DataSource = dt;
             GridView1.DataBind();
@@ -46,7 +47,7 @@ namespace TaskSystem.Projects
             TaskSystem.tools.InsertUpdateData(xp);
         }
 
-        private void updateData(String id,String project)
+        private void updateData(String id, String project)
         {
             SqlCommand xp = new SqlCommand("Update project set project=@project where id=@id;");
             xp.Parameters.AddWithValue("@id", id);
@@ -119,6 +120,12 @@ namespace TaskSystem.Projects
                 sb.Append("$('#deleteModal').modal('show');");
                 sb.Append(@"</script>");
                 ClientScript.RegisterStartupScript(this.GetType(), "DeleteModalScript", sb.ToString());
+            }
+
+            if (e.CommandName.Equals("versionRecord"))
+            {
+                string code = GridView1.DataKeys[index].Value.ToString();
+                Response.Redirect("~/Projects/Version.aspx?projectId=" + code);
             }
         }
         protected void btnDelete_Click(object sender, EventArgs e)
