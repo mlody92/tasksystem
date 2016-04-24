@@ -135,7 +135,7 @@ namespace TaskSystem
 
         private void insertData(String title, String projectId, String typeId, String priorityId, String sprintId, String affectVersionId, String fixVersionId, String assigneId, String description, String issueIndex)
         {
-            SqlCommand xp = new SqlCommand("Insert Into issue (title, project_id, type_id, priority_id,sprint_id,affect_version_id, fix_version_id, assigne_id, summary, issueIndex) Values (@title,@projectId,@typeId,@priorityId, @sprintId, @affectVersionId, @fixVersionId, @assigneId, @description, @issueIndex)");
+            SqlCommand xp = new SqlCommand("Insert Into issue (title, project_id, type_id, priority_id,sprint_id,affect_version_id, fix_version_id, assigne_id, summary, issueIndex, status) Values (@title,@projectId,@typeId,@priorityId, @sprintId, @affectVersionId, @fixVersionId, @assigneId, @description, @issueIndex,'open')");
             xp.Parameters.AddWithValue("@title", title);
             xp.Parameters.AddWithValue("@projectId", projectId);
             xp.Parameters.AddWithValue("@typeId", typeId);

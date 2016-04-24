@@ -21,6 +21,7 @@
                         <asp:BoundField DataField="username" HeaderText="Username" SortExpression="username" />
                         <asp:BoundField DataField="affect" HeaderText="Affect" SortExpression="affect" />
                         <asp:BoundField DataField="fix" HeaderText="Fix" SortExpression="fix" />
+                        <asp:BoundField DataField="status" HeaderText="Status" SortExpression="status" />
                         <asp:ButtonField CommandName="editRecord" Text="Edit" ItemStyle-Width="10px" />
                     </Columns>
                 </asp:GridView>
