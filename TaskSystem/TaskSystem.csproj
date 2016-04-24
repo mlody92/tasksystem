@@ -139,6 +139,7 @@
     <Content Include="issues.aspx" />
     <Content Include="Issues\Manage.aspx" />
     <Content Include="Issues\Priority.aspx" />
+    <Content Include="Issues\Sprint.aspx" />
     <Content Include="js\sweetalert.min.js" />
     <Content Include="login.aspx" />
     <Content Include="packages.config" />
@@ -303,6 +304,13 @@
     </Compile>
     <Compile Include="Issues\Priority.aspx.designer.cs">
       <DependentUpon>Priority.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Issues\Sprint.aspx.cs">
+      <DependentUpon>Sprint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Issues\Sprint.aspx.designer.cs">
+      <DependentUpon>Sprint.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>

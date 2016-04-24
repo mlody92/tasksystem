@@ -1,7 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Types.aspx.cs" Inherits="TaskSystem.Projects.Types" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Sprint.aspx.cs" Inherits="TaskSystem.Issues.Sprint" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h3 class="blank1">Issue types</h3>
+    
+    <h3 class="blank1">Issue sprint</h3>
 
     <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#newModal">New</button>
 
@@ -31,14 +32,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">New type</h4>
+                    <h4 class="modal-title">New sprint</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
                         <div class="form-group mb-n">
-                            <label class="col-md-2 control-label">Type name</label>
+                            <label class="col-md-2 control-label">Sprint name</label>
                             <div class="col-md-8">
-                                <input id="Text1" runat="server" type="text" class="form-control1" placeholder="Type name" />
+                                <input id="Text1" runat="server" type="text" class="form-control1" placeholder="Sprint name" />
                             </div>
                         </div>
                     </div>
@@ -58,12 +59,12 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Edit type</h4>
+                    <h4 class="modal-title">Edit sprint</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
                         <div class="form-group mb-n">
-                            <label class="col-md-2 control-label">Type name</label>
+                            <label class="col-md-2 control-label">Sprint name</label>
                             <div class="col-md-8">
                                 <input id="Text2" runat="server" type="text" class="form-control1" />
                             </div>
@@ -85,11 +86,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Delete type</h4>
+                    <h4 class="modal-title">Delete sprint</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
-                        Are you sure you want to delete this type?
+                        Are you sure you want to delete this sprint?
                     </div>
 
                 </div>
