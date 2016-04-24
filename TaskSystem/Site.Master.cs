@@ -43,7 +43,11 @@ namespace TaskSystem
             DropDownList1.DataSource = dt;
             DropDownList1.DataBind();
 
-
+            DataTable dt2 = TaskSystem.tools.GetData("SELECT [id], [username] FROM [users] ORDER BY [id]");
+            DropDownList7.DataTextField = "username";
+            DropDownList7.DataValueField = "id";
+            DropDownList7.DataSource = dt2;
+            DropDownList7.DataBind();
 
         }
 
