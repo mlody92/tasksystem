@@ -18,6 +18,76 @@ namespace TaskSystem.Issues
             refresh();
         }
 
+        protected void SelectedChange(object sender, EventArgs e)
+        {
+            dataProject(DropDownList1.SelectedItem.Value);
+        }
+
+        private void dataProject(String project_id)
+        {
+            DataTable dt6 = TaskSystem.tools.GetData("SELECT [id], [version] FROM [project_version] WHERE [status]='released' AND [project_id]='" + project_id + "' ORDER BY [id]");
+            DropDownList5.Items.Clear();
+            DropDownList5.DataTextField = "version";
+            DropDownList5.DataValueField = "id";
+            DropDownList5.DataSource = dt6;
+            DropDownList5.DataBind();
+            DropDownList5.Items.Insert(0, new ListItem("", ""));
+
+            DataTable dt7 = TaskSystem.tools.GetData("SELECT [id], [version] FROM [project_version] WHERE [status]='open' AND [project_id]='" + project_id + "' ORDER BY [id]");
+            DropDownList6.Items.Clear();
+            DropDownList6.DataTextField = "version";
+            DropDownList6.DataValueField = "id";
+            DropDownList6.DataSource = dt7;
+            DropDownList6.DataBind();
+            DropDownList6.Items.Insert(0, new ListItem("", ""));
+
+        }
+
+        public String getNextProjectIndex(string id)
+        {
+            SqlConnection vid = TaskSystem.tools.GetConnection();
+            int index = 0;
+            {
+                SqlCommand xp = new SqlCommand("SELECT isNull(Max(issueIndex),0) as number FROM issue WHERE project_id=@id;", vid);
+                xp.Parameters.AddWithValue("@id", id);
+                vid.Open();
+                DataSet dataSet = new DataSet();
+                SqlDataAdapter datauser = new SqlDataAdapter(xp);
+                datauser.Fill(dataSet);
+                bool flagaSql = dataSet.Tables[0].Rows.Count > 0;
+                if (flagaSql.Equals(true))
+                {
+                    index = Int32.Parse(dataSet.Tables[0].Rows[0]["number"].ToString());
+                }
+                vid.Close();
+            }
+            index = index + 1;
+            return index.ToString();
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            updateData(hfCount.Value, Text3.Value, DropDownList1.SelectedValue, DropDownList2.SelectedItem.Value, DropDownList3.SelectedItem.Value, DropDownList4.SelectedItem.Value, DropDownList5.SelectedItem.Value, DropDownList6.SelectedItem.Value, DropDownList7.SelectedItem.Value, TextArea1.InnerText, getNextProjectIndex(DropDownList1.SelectedValue));
+            refresh();
+            ShowMessageEdit("Issue");
+        }
+
+        private void updateData(String id, String title, String projectId, String typeId, String priorityId, String sprintId, String affectVersionId, String fixVersionId, String assigneId, String summary, String issueIndex)
+        {
+            SqlCommand xp = new SqlCommand("Update issue set title=@title,project_id=@project_id,type_id=@type_id, priority_id=@priority_id, sprint_id=@sprint_id,affect_version_id=@affect_version_id, fix_version_id=@fix_version_id, assigne_id=@assigne_id, summary=@summary,issueIndex=@issueIndex where id=@id;");
+            xp.Parameters.AddWithValue("@id", id);
+            xp.Parameters.AddWithValue("@title", title);
+            xp.Parameters.AddWithValue("@project_id", projectId);
+            xp.Parameters.AddWithValue("@type_id", typeId);
+            xp.Parameters.AddWithValue("@priority_id", priorityId);
+            xp.Parameters.AddWithValue("@sprint_id", sprintId);
+            xp.Parameters.AddWithValue("@affect_version_id", affectVersionId);
+            xp.Parameters.AddWithValue("@fix_version_id", fixVersionId);
+            xp.Parameters.AddWithValue("@assigne_id", assigneId);
+            xp.Parameters.AddWithValue("@summary", summary);
+            xp.Parameters.AddWithValue("@issueIndex", issueIndex);
+            TaskSystem.tools.InsertUpdateData(xp);
+        }
 
         private void refresh()
         {
@@ -99,7 +169,6 @@ namespace TaskSystem.Issues
                 DropDownList6.SelectedItem.Text = HttpUtility.HtmlDecode(gvrow.Cells[10].Text).ToString();
                 DropDownList7.SelectedItem.Text = HttpUtility.HtmlDecode(gvrow.Cells[8].Text).ToString();
                 TextArea1.Value = getSummary(HttpUtility.HtmlDecode(gvrow.Cells[0].Text).ToString());
-
 
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
                 sb.Append(@"<script type='text/javascript'>");

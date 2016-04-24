@@ -52,6 +52,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <form runat="server" id="form1">
         <section>
             <!-- left side start-->
+            <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" />
 
             <div class="left-side sticky-left-side">
 
@@ -802,8 +803,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <label for="focusedinput" class="col-sm-2 control-label">Project</label>
                                                 <div class="col-sm-8">
 
-                                                    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" />
-
+                                                    
                                                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                                         <ContentTemplate>
                                                             <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="SelectedChange" EventName="SelectedChange" AppendDataBoundItems="true" class="form-control1" ClientIDMode="Static" AutoPostBack="true" />

@@ -1,13 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Manage.aspx.cs" Inherits="TaskSystem.Issues.Manage" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <h3 class="blank1">Issue</h3>
 
-    
+
     <div class="bs-example5" data-example-id="default-media">
         <div class="media">
             <div class="panel-body1">
-                <asp:GridView ID="GridView1" runat="server" class="table table-striped" AutoGenerateColumns="False" DataKeyNames="id" OnRowCommand="GridView1_RowCommand" >
+                <asp:GridView ID="GridView1" runat="server" class="table table-striped" AutoGenerateColumns="False" DataKeyNames="id" OnRowCommand="GridView1_RowCommand">
                     <Columns>
                         <asp:BoundField DataField="id" HeaderText="id" SortExpression="id" />
                         <asp:BoundField DataField="title" HeaderText="Title" SortExpression="title" />
@@ -21,7 +22,6 @@
                         <asp:BoundField DataField="affect" HeaderText="Affect" SortExpression="affect" />
                         <asp:BoundField DataField="fix" HeaderText="Fix" SortExpression="fix" />
                         <asp:ButtonField CommandName="editRecord" Text="Edit" ItemStyle-Width="10px" />
-                        <asp:ButtonField CommandName="deleteRecord" Text="Delete" ItemStyle-Width="10px" />
                     </Columns>
                 </asp:GridView>
                 <asp:HiddenField ID="hfCount" runat="server" Value="0" />
@@ -31,7 +31,7 @@
     </div>
 
 
-     <div id="editModal" class="modal fade" role="dialog">
+    <div id="editModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -52,10 +52,24 @@
                             <div class="form-group">
                                 <label for="focusedinput" class="col-sm-2 control-label">Project</label>
                                 <div class="col-sm-8">
+
+                                   <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                        <ContentTemplate>
+                                            <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="SelectedChange" EventName="SelectedChange" AppendDataBoundItems="true" class="form-control1" ClientIDMode="Static" AutoPostBack="true" />
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="DropDownList1" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
+                                </div>
+                            </div>
+                            <%-- <div class="form-group">
+                                <label for="focusedinput" class="col-sm-2 control-label">Project</label>
+                                <div class="col-sm-8">
                                     <asp:DropDownList ID="DropDownList1" runat="server" class="form-control1">
                                     </asp:DropDownList>
                                 </div>
-                            </div>
+                            </div>--%>
                             <div class="form-group">
                                 <label for="focusedinput" class="col-sm-2 control-label">Issue type</label>
                                 <div class="col-sm-8">
@@ -79,6 +93,35 @@
                             <div class="form-group">
                                 <label for="focusedinput" class="col-sm-2 control-label">Affect version</label>
                                 <div class="col-sm-8">
+
+                                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                        <ContentTemplate>
+                                            <asp:DropDownList ID="DropDownList5" runat="server" AppendDataBoundItems="true" class="form-control1" />
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="DropDownList5" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="focusedinput" class="col-sm-2 control-label">Fix version</label>
+                                <div class="col-sm-8">
+
+                                    <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                                        <ContentTemplate>
+                                            <asp:DropDownList ID="DropDownList6" runat="server" AppendDataBoundItems="true" class="form-control1" />
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="DropDownList6" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
+                                </div>
+                            </div>
+                            <%-- <div class="form-group">
+                                <label for="focusedinput" class="col-sm-2 control-label">Affect version</label>
+                                <div class="col-sm-8">
                                     <asp:DropDownList ID="DropDownList5" runat="server" class="form-control1">
                                     </asp:DropDownList>
                                 </div>
@@ -89,7 +132,7 @@
                                     <asp:DropDownList ID="DropDownList6" runat="server" class="form-control1">
                                     </asp:DropDownList>
                                 </div>
-                            </div>
+                            </div>--%>
                             <div class="form-group">
                                 <label for="focusedinput" class="col-sm-2 control-label">Assigne</label>
                                 <div class="col-sm-8">
@@ -109,7 +152,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="Button1" class="btn btn-default" runat="server" Text="Save"/>
+                    <asp:Button ID="Button1" class="btn btn-default" runat="server" Text="Save" OnClick="Button2_Click" />
                     <asp:Button ID="Button2" class="btn btn-default" runat="server" Text="Close" data-dismiss="modal" />
                 </div>
             </div>
@@ -132,7 +175,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="Button5" class="btn btn-default" runat="server" Text="Delete" CssClass="btn btn-info"/>
+                    <asp:Button ID="Button5" class="btn btn-default" runat="server" Text="Delete" CssClass="btn btn-info" />
                     <asp:Button ID="Button6" class="btn btn-default" runat="server" Text="Close" data-dismiss="modal" />
                 </div>
             </div>
