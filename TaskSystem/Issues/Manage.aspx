@@ -1,19 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Manage.aspx.cs" Inherits="TaskSystem.Issues.Manage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <h3 class="blank1">Issue</h3>
 
-      <h3 class="blank1">Projects</h3>
-
-    <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModalProject">New</button>
-
-
+    
     <div class="bs-example5" data-example-id="default-media">
         <div class="media">
             <div class="panel-body1">
                 <asp:GridView ID="GridView1" runat="server" class="table table-striped" AutoGenerateColumns="False" DataKeyNames="id" OnRowCommand="GridView1_RowCommand">
                     <Columns>
                         <asp:BoundField DataField="id" HeaderText="id" SortExpression="id" />
-                        <asp:BoundField DataField="project" HeaderText="Project" SortExpression="project" />
+                        <asp:BoundField DataField="name" HeaderText="Name" SortExpression="name" />
                         <asp:ButtonField CommandName="editRecord" Text="Edit" ItemStyle-Width="10px" />
                         <asp:ButtonField CommandName="deleteRecord" Text="Delete" ItemStyle-Width="10px" />
                     </Columns>
@@ -25,23 +22,79 @@
     </div>
 
 
-    
-
-     <div id="editProject" class="modal fade" role="dialog">
+     <div id="editModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Edit project</h4>
+                    <h4 class="modal-title">Edit issue</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
                         <div class="form-group mb-n">
-                            <label class="col-md-2 control-label">Project name</label>
-                            <div class="col-md-8">
-                                <input id="Text2" runat="server" type="text" class="form-control1" />
+                            <div class="form-group">
+                                <label for="focusedinput" class="col-sm-2 control-label">Title</label>
+                                <div class="col-sm-8">
+                                    <input id="Text3" type="text" runat="server" class="form-control1" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="focusedinput" class="col-sm-2 control-label">Project</label>
+                                <div class="col-sm-8">
+                                    <asp:DropDownList ID="DropDownList1" runat="server" class="form-control1">
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="focusedinput" class="col-sm-2 control-label">Issue type</label>
+                                <div class="col-sm-8">
+                                    <asp:DropDownList ID="DropDownList2" runat="server" class="form-control1">
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="focusedinput" class="col-sm-2 control-label">Priority</label>
+                                <div class="col-sm-8">
+                                    <asp:DropDownList ID="DropDownList3" runat="server" class="form-control1">
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="focusedinput" class="col-sm-2 control-label">Sprint</label>
+                                <div class="col-sm-8">
+                                    <asp:DropDownList ID="DropDownList4" runat="server" class="form-control1"></asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="focusedinput" class="col-sm-2 control-label">Affect version</label>
+                                <div class="col-sm-8">
+                                    <asp:DropDownList ID="DropDownList5" runat="server" class="form-control1">
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="focusedinput" class="col-sm-2 control-label">Fix version</label>
+                                <div class="col-sm-8">
+                                    <asp:DropDownList ID="DropDownList6" runat="server" class="form-control1">
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="focusedinput" class="col-sm-2 control-label">Assigne</label>
+                                <div class="col-sm-8">
+                                    <asp:DropDownList ID="DropDownList7" runat="server" class="form-control1">
+                                    </asp:DropDownList>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="focusedinput" class="col-sm-2 control-label">Summary</label>
+                                <div class="col-sm-8">
+                                    <textarea id="TextArea1" cols="41" rows="5" runat="server"></textarea>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -61,11 +114,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Delete project</h4>
+                    <h4 class="modal-title">Delete issue</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
-                        Are you sure you want to delete this project?
+                        Are you sure you want to delete this issue?
                     </div>
 
                 </div>
@@ -77,6 +130,5 @@
 
         </div>
     </div>
-
 
 </asp:Content>

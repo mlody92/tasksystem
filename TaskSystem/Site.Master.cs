@@ -95,5 +95,37 @@ namespace TaskSystem
         {
             Response.Redirect("~/Account/Profile.aspx");
         }
+
+        protected void saveIssue_Click(object sender, EventArgs e)
+        {
+            insertData(Text3.Value, DropDownList1.SelectedItem.Value, DropDownList2.SelectedItem.Value, DropDownList3.SelectedItem.Value, DropDownList4.SelectedItem.Value, DropDownList5.SelectedItem.Value, DropDownList6.SelectedItem.Value, DropDownList7.SelectedItem.Value, TextArea1.InnerText);
+            ShowMessage();
+        }
+
+        private void insertData(String title, String projectId, String typeId, String priorityId,String sprintId, String affectVersionId, String fixVersionId, String assigneId, String description)
+        {
+            SqlCommand xp = new SqlCommand("Insert Into issue (title, project_id, type_id, priority_id,sprint_id,affect_version_id, fix_version_id, assigne_id, summary) Values (@title,@projectId,@typeId,@priorityId, @sprintId, @affectVersionId, @fixVersionId, @assigneId, @description)");
+            xp.Parameters.AddWithValue("@title", title);
+            xp.Parameters.AddWithValue("@projectId", projectId);
+            xp.Parameters.AddWithValue("@typeId", typeId);
+            xp.Parameters.AddWithValue("@priorityId", priorityId);
+            xp.Parameters.AddWithValue("@sprintId", sprintId);
+            xp.Parameters.AddWithValue("@affectVersionId", affectVersionId);
+            xp.Parameters.AddWithValue("@fixVersionId", fixVersionId);
+            xp.Parameters.AddWithValue("@assigneId", assigneId);
+            xp.Parameters.AddWithValue("@description", description);
+            TaskSystem.tools.InsertUpdateData(xp);
+        }
+
+        private void ShowMessage()
+        {
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<script type = 'text/javascript'>");
+            sb.Append("swal(\"Good job!\", \"You add new issue\",\"success\")");
+            sb.Append("</script>");
+            Page.ClientScript.RegisterStartupScript(this.GetType(),
+                            "script", sb.ToString());
+        }
     }
 }
