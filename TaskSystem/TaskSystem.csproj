@@ -137,6 +137,7 @@
     <Content Include="images\Tulips.jpg" />
     <Content Include="index.aspx" />
     <Content Include="issues.aspx" />
+    <Content Include="Issues\Manage.aspx" />
     <Content Include="js\sweetalert.min.js" />
     <Content Include="login.aspx" />
     <Content Include="packages.config" />
@@ -286,6 +287,13 @@
     </Compile>
     <Compile Include="issues.aspx.designer.cs">
       <DependentUpon>issues.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Issues\Manage.aspx.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Issues\Manage.aspx.designer.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>

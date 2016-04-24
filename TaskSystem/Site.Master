@@ -790,7 +790,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="form-horizontal">
                             <%--<p>Some text in the modal.</p>--%>
 
-                           <%-- //Project
+                            <%-- //Project
                             //Issue type
                             //Summary
                             //Priority
@@ -803,34 +803,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="form-group">
                                 <label for="focusedinput" class="col-sm-2 control-label">Project</label>
                                 <div class="col-sm-8">
-                                    <asp:DropDownList ID="DropDownList1" runat="server" class="form-control1" ></asp:DropDownList>
+                                    <asp:DropDownList ID="DropDownList1" runat="server" class="form-control1" AppendDataBoundItems="true">
+                                        <asp:ListItem Enabled="true" Selected="True" Text="Please select project"></asp:ListItem>
+                                    </asp:DropDownList>
                                 </div>
                             </div>
-                             <div class="form-group">
+                            <div class="form-group">
                                 <label for="focusedinput" class="col-sm-2 control-label">Issue type</label>
                                 <div class="col-sm-8">
-                                    <asp:DropDownList ID="DropDownList2" runat="server" class="form-control1" ></asp:DropDownList>
+                                    <asp:DropDownList ID="DropDownList2" runat="server" class="form-control1"></asp:DropDownList>
                                 </div>
                             </div>
-                             <div class="form-group">
+                            <div class="form-group">
                                 <label for="focusedinput" class="col-sm-2 control-label">Priority</label>
                                 <div class="col-sm-8">
-                                    <asp:DropDownList ID="DropDownList3" runat="server" class="form-control1" ></asp:DropDownList>
+                                    <asp:DropDownList ID="DropDownList3" runat="server" class="form-control1"></asp:DropDownList>
                                 </div>
                             </div>
-                             <div class="form-group">
+                            <div class="form-group">
                                 <label for="focusedinput" class="col-sm-2 control-label">Sprint</label>
                                 <div class="col-sm-8">
                                     <asp:DropDownList ID="DropDownList4" runat="server" class="form-control1"></asp:DropDownList>
                                 </div>
                             </div>
-                             <div class="form-group">
+                            <div class="form-group">
                                 <label for="focusedinput" class="col-sm-2 control-label">Affect version</label>
                                 <div class="col-sm-8">
-                                    <asp:DropDownList ID="DropDownList5" runat="server" class="form-control1" ></asp:DropDownList>
+                                    <asp:DropDownList ID="DropDownList5" runat="server" class="form-control1"></asp:DropDownList>
                                 </div>
                             </div>
-                             <div class="form-group">
+                            <div class="form-group">
                                 <label for="focusedinput" class="col-sm-2 control-label">Fix version</label>
                                 <div class="col-sm-8">
                                     <asp:DropDownList ID="DropDownList6" runat="server" class="form-control1"></asp:DropDownList>
@@ -862,7 +864,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                     <div class="modal-footer">
                         <asp:Button ID="Button1" class="btn btn-default" runat="server" Text="Save" />
-                        <asp:Button ID="Button2" class="btn btn-default" runat="server" Text="Close" data-dismiss="modal"/>
+                        <asp:Button ID="Button2" class="btn btn-default" runat="server" Text="Close" data-dismiss="modal" />
                     </div>
                 </div>
 
