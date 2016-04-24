@@ -74,7 +74,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <span>Projects</span></a>
                             <ul class="sub-menu-list">
                                 <li><a href="/Projects/Manage.aspx">Manage</a> </li>
-                                <li><a href="widgets.html">User access</a></li>
+                                <li><a href="/Projects/Types.aspx">Types</a> </li>
                             </ul>
                         </li>
                         <li><a href="forms.html"><i class="lnr lnr-spell-check"></i><span>Tasks</span></a></li>

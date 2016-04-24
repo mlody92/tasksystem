@@ -150,6 +150,7 @@
     <Content Include="fonts\Sn-0zpaF2c3wYt9xdgoYFfk_vArhqVIZ0nv9q090hN8.woff2" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Projects\Manage.aspx" />
+    <Content Include="Projects\Types.aspx" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.js" />
@@ -308,6 +309,13 @@
     </Compile>
     <Compile Include="Projects\Manage.aspx.designer.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Projects\Types.aspx.cs">
+      <DependentUpon>Types.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Projects\Types.aspx.designer.cs">
+      <DependentUpon>Types.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
