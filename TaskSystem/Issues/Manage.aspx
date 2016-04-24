@@ -7,10 +7,17 @@
     <div class="bs-example5" data-example-id="default-media">
         <div class="media">
             <div class="panel-body1">
-                <asp:GridView ID="GridView1" runat="server" class="table table-striped" AutoGenerateColumns="False" DataKeyNames="id" OnRowCommand="GridView1_RowCommand">
+                <asp:GridView ID="GridView1" runat="server" class="table table-striped" AutoGenerateColumns="False" DataKeyNames="id" >
                     <Columns>
                         <asp:BoundField DataField="id" HeaderText="id" SortExpression="id" />
-                        <asp:BoundField DataField="name" HeaderText="Name" SortExpression="name" />
+                        <asp:BoundField DataField="title" HeaderText="Title" SortExpression="title" />
+                        <asp:BoundField DataField="project" HeaderText="Project" SortExpression="project" />
+                        <asp:BoundField DataField="priority" HeaderText="Priority" SortExpression="priority" />
+                        <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
+                        <asp:BoundField DataField="sprint" HeaderText="Sprint" SortExpression="sprint" />
+                        <asp:BoundField DataField="username" HeaderText="Username" SortExpression="username" />
+                        <asp:BoundField DataField="affect" HeaderText="Affect" SortExpression="affect" />
+                        <asp:BoundField DataField="fix" HeaderText="Fix" SortExpression="fix" />
                         <asp:ButtonField CommandName="editRecord" Text="Edit" ItemStyle-Width="10px" />
                         <asp:ButtonField CommandName="deleteRecord" Text="Delete" ItemStyle-Width="10px" />
                     </Columns>
@@ -100,7 +107,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="Button1" class="btn btn-default" runat="server" Text="Save" OnClick="Button2_Click" />
+                    <asp:Button ID="Button1" class="btn btn-default" runat="server" Text="Save"/>
                     <asp:Button ID="Button2" class="btn btn-default" runat="server" Text="Close" data-dismiss="modal" />
                 </div>
             </div>
@@ -123,7 +130,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="Button5" class="btn btn-default" runat="server" Text="Delete" CssClass="btn btn-info" OnClick="btnDelete_Click"/>
+                    <asp:Button ID="Button5" class="btn btn-default" runat="server" Text="Delete" CssClass="btn btn-info"/>
                     <asp:Button ID="Button6" class="btn btn-default" runat="server" Text="Close" data-dismiss="modal" />
                 </div>
             </div>
