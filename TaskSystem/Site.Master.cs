@@ -34,10 +34,7 @@ namespace TaskSystem
                 if (!Page.IsPostBack)
                 {
                     dataProject();
-
                 }
-                
-
             }
         }
 
