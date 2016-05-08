@@ -56,11 +56,12 @@
 
                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                         <ContentTemplate>
-                                            <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="SelectedChange" EventName="SelectedChange" AppendDataBoundItems="true" class="form-control1" ClientIDMode="Static" AutoPostBack="true" />
+                                            <%--<asp:DropDownList ID="DropDownList8" runat="server" OnSelectedIndexChanged="SelectedChange" EventName="SelectedChange" AppendDataBoundItems="true" class="form-control1" ClientIDMode="Static" AutoPostBack="true" />--%>
+                                            <asp:DropDownList ID="DropDownList1" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="SelectedChange" EventName="SelectedChange" class="form-control1" AutoPostBack="true" />
                                         </ContentTemplate>
-                                        <Triggers>
+                                        <%--<Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="DropDownList1" />
-                                        </Triggers>
+                                        </Triggers>--%>
                                     </asp:UpdatePanel>
                                 </div>
                             </div>
@@ -99,9 +100,9 @@
                                         <ContentTemplate>
                                             <asp:DropDownList ID="DropDownList5" runat="server" AppendDataBoundItems="true" class="form-control1" />
                                         </ContentTemplate>
-                                        <Triggers>
+                                       <%-- <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="DropDownList5" />
-                                        </Triggers>
+                                        </Triggers>--%>
                                     </asp:UpdatePanel>
                                 </div>
                             </div>
@@ -114,9 +115,9 @@
                                         <ContentTemplate>
                                             <asp:DropDownList ID="DropDownList6" runat="server" AppendDataBoundItems="true" class="form-control1" />
                                         </ContentTemplate>
-                                        <Triggers>
+                                      <%--  <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="DropDownList6" />
-                                        </Triggers>
+                                        </Triggers>--%>
                                     </asp:UpdatePanel>
                                 </div>
                             </div>
