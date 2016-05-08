@@ -1,59 +1,83 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="issues.aspx.cs" Inherits="TaskSystem.issues" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.8.24/jquery-ui.min.js" type="text/javascript"></script>
-    <link href="http://code.jquery.com/ui/1.8.24/themes/blitzer/jquery-ui.css" rel="stylesheet"
-        type="text/css" />
-    
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.8.0.js" type="text/javascript"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.22/jquery-ui.js"></script>
+    <link rel="Stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/themes/redmond/jquery-ui.css" />
     <script type="text/javascript">
         $(function () {
-            $("#dvSource img").draggable({
-                revert: "invalid",
-                refreshPositions: true,
-                drag: function (event, ui) {
-                    ui.helper.addClass("draggable");
-                },
-                stop: function (event, ui) {
-                    ui.helper.removeClass("draggable");
-                    var image = this.src.split("/")[this.src.split("/").length - 1];
-                    if ($.ui.ddmanager.drop(ui.helper.data("draggable"), event)) {
-                        alert(image + " dropped.");
-                    }
-                    else {
-                        alert(image + " not dropped.");
-                    }
+            $(".drag_drop_grid").sortable({
+                items: 'tr:not(tr:first-child)',
+                cursor: 'crosshair',
+                connectWith: '.drag_drop_grid',
+                axis: 'y',
+                dropOnEmpty: true,
+                receive: function (e, ui) {
+                    $(this).find("tbody").append(ui.item);
                 }
             });
-            $("#dvDest").droppable({
-                drop: function (event, ui) {
-                    if ($("#dvDest img").length == 0) {
-                        $("#dvDest").html("");
-                    }
-                    ui.draggable.addClass("dropped");
-                    $("#dvDest").append(ui.draggable);
-                }
-            });
+            $("[id*=gvDest] tr:not(tr:first-child)").remove();
         });
     </script>
-    <div class="bs-example5" data-example-id="default-media">
-        <div class="media">
-            <div class="panel-body1">
-    <div id="dvSource">
-        <img alt="" src="images/Chrysanthemum.jpg" />
-        <img alt="" src="images/Desert.jpg" />
-        <img alt="" src="images/Hydrangeas.jpg" />
-        <img alt="" src="images/Jellyfish.jpg" />
-        <img alt="" src="images/Koala.jpg" />
-        <img alt="" src="images/Lighthouse.jpg" />
-        <img alt="" src="images/Penguins.jpg" />
-        <img alt="" src="images/Tulips.jpg" />
-    </div>
-    <hr />
-    <div id="dvDest">
-        Drop here
-    </div>
-                </div></div></div>
+    
 
+    <asp:GridView ID="gvSource" runat="server" CssClass="drag_drop_grid GridSrc" AutoGenerateColumns="false">
+        <Columns>
+
+            <asp:TemplateField HeaderText="header">
+                <ItemTemplate>
+                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("id")%>'></asp:Label>
+                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("title")%>'></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("project")%>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+    </asp:GridView>
+    <hr />
+    <asp:GridView ID="gvDest" runat="server" CssClass="drag_drop_grid GridDest" AutoGenerateColumns="false">
+        <Columns>
+            <asp:TemplateField HeaderText="header">
+                <ItemTemplate>
+                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("id")%>'></asp:Label>
+                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("title")%>'></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("project")%>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+    </asp:GridView>
+
+
+
+
+
+
+    <asp:GridView ID="GridView1" runat="server" Width="300px" AutoGenerateColumns="False" >
+        <Columns>
+            <%--
+            <asp:BoundField DataField="id" HeaderText="id" SortExpression="id" />
+            <asp:BoundField DataField="title" HeaderText="Title" SortExpression="title" />
+            <asp:BoundField DataField="project" HeaderText="Project" SortExpression="project" />
+              <asp:BoundField DataField="short" HeaderText="Short" SortExpression="short" />
+                        <asp:BoundField DataField="issueIndex" HeaderText="IssueIndex" SortExpression="issueIndex" />
+                        <asp:BoundField DataField="priority" HeaderText="Priority" SortExpression="priority" />
+                        <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
+                        <asp:BoundField DataField="sprint" HeaderText="Sprint" SortExpression="sprint" />
+                        <asp:BoundField DataField="username" HeaderText="Username" SortExpression="username" />
+                        <asp:BoundField DataField="affect" HeaderText="Affect" SortExpression="affect" />
+                        <asp:BoundField DataField="fix" HeaderText="Fix" SortExpression="fix" />
+                        <asp:BoundField DataField="status" HeaderText="Status" SortExpression="status" />
+                        <asp:ButtonField CommandName="editRecord" Text="Edit" ItemStyle-Width="10px" />--%>
+            <asp:TemplateField HeaderText="header">
+                <ItemTemplate>
+                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("id")%>'></asp:Label>
+                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("title")%>'></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("project")%>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+
+        </Columns>
+    </asp:GridView>
 
 </asp:Content>

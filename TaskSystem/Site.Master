@@ -82,6 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <a href="#"><i class="lnr lnr-cog"></i>
                                 <span>Issues</span></a>
                             <ul class="sub-menu-list">
+                                <li><a href="/Issues/My.aspx">My</a> </li>
                                 <li><a href="/Issues/Manage.aspx">Manage</a> </li>
                                 <li><a href="/Issues/Types.aspx">Types</a> </li>
                                 <li><a href="/Issues/Priority.aspx">Priority</a> </li>
