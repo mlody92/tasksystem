@@ -23,25 +23,7 @@ namespace TaskSystem.Issues
             dataProject(DropDownList1.SelectedItem.Value);
         }
 
-        private void dataProject(String project_id)
-        {
-            DataTable dt6 = TaskSystem.tools.GetData("SELECT [id], [version] FROM [project_version] WHERE [status]='released' AND [project_id]='" + project_id + "' ORDER BY [id]");
-            DropDownList5.Items.Clear();
-            DropDownList5.Items.Add(new ListItem("", "")); 
-            DropDownList5.DataTextField = "version";
-            DropDownList5.DataValueField = "id";
-            DropDownList5.DataSource = dt6;
-            DropDownList5.DataBind();
-
-            DataTable dt7 = TaskSystem.tools.GetData("SELECT [id], [version] FROM [project_version] WHERE [status]='open' AND [project_id]='" + project_id + "' ORDER BY [id]");
-            DropDownList6.Items.Clear();
-            DropDownList6.Items.Add(new ListItem("", ""));
-            DropDownList6.DataTextField = "version";
-            DropDownList6.DataValueField = "id";
-            DropDownList6.DataSource = dt7;
-            DropDownList6.DataBind();
-
-        }
+        
 
         public String getNextProjectIndex(string id)
         {
@@ -69,11 +51,11 @@ namespace TaskSystem.Issues
         {
             if (checkProjectId(hfCount.Value) != DropDownList1.SelectedItem.Value)
             {
-                updateData(hfCount.Value, Text3.Value, DropDownList1.SelectedItem.Value, DropDownList2.SelectedItem.Value, DropDownList3.SelectedItem.Value, DropDownList4.SelectedItem.Value, DropDownList5.SelectedItem.Value, DropDownList6.SelectedItem.Value, DropDownList7.SelectedItem.Value, TextArea1.InnerText, getNextProjectIndex(DropDownList1.SelectedValue));
+                updateData(hfCount.Value, Text3.Value, DropDownList1.SelectedItem.Value, DropDownList2.SelectedItem.Value, DropDownList3.SelectedItem.Value, DropDownList4.SelectedItem.Value, DropDownList5.SelectedItem.Value, DropDownList6.SelectedItem.Value, DropDownList7.SelectedItem.Value, TextArea1.InnerText, getNextProjectIndex(DropDownList1.SelectedValue), DropDownList8.SelectedItem.Value);
             }
             else
             {
-                updateDataBezZmianyProjektu(hfCount.Value, Text3.Value, DropDownList1.SelectedItem.Value, DropDownList2.SelectedItem.Value, DropDownList3.SelectedItem.Value, DropDownList4.SelectedItem.Value, DropDownList5.SelectedItem.Value, DropDownList6.SelectedItem.Value, DropDownList7.SelectedItem.Value, TextArea1.InnerText);
+                updateDataBezZmianyProjektu(hfCount.Value, Text3.Value, DropDownList2.SelectedItem.Value, DropDownList3.SelectedItem.Value, DropDownList4.SelectedItem.Value, DropDownList5.SelectedItem.Value, DropDownList6.SelectedItem.Value, DropDownList7.SelectedItem.Value, TextArea1.InnerText, DropDownList8.SelectedItem.Value);
             }
                 refresh();
             ShowMessageEdit("Issue");
@@ -85,9 +67,9 @@ namespace TaskSystem.Issues
             return dt.Rows[0][0].ToString();
         }
 
-        private void updateData(String id, String title, String projectId, String typeId, String priorityId, String sprintId, String affectVersionId, String fixVersionId, String assigneId, String summary, String issueIndex)
+        private void updateData(String id, String title, String projectId, String typeId, String priorityId, String sprintId, String affectVersionId, String fixVersionId, String assigneId, String summary, String issueIndex, String status)
         {
-            SqlCommand xp = new SqlCommand("Update issue set title=@title,project_id=@project_id,type_id=@type_id, priority_id=@priority_id, sprint_id=@sprint_id,affect_version_id=@affect_version_id, fix_version_id=@fix_version_id, assigne_id=@assigne_id, summary=@summary,issueIndex=@issueIndex where id=@id;");
+            SqlCommand xp = new SqlCommand("Update issue set title=@title,project_id=@project_id,type_id=@type_id, priority_id=@priority_id, sprint_id=@sprint_id,affect_version_id=@affect_version_id, fix_version_id=@fix_version_id, assigne_id=@assigne_id, summary=@summary,issueIndex=@issueIndex, status=@status where id=@id;");
             xp.Parameters.AddWithValue("@id", id);
             xp.Parameters.AddWithValue("@title", title);
             xp.Parameters.AddWithValue("@project_id", projectId);
@@ -99,15 +81,15 @@ namespace TaskSystem.Issues
             xp.Parameters.AddWithValue("@assigne_id", assigneId);
             xp.Parameters.AddWithValue("@summary", summary);
             xp.Parameters.AddWithValue("@issueIndex", issueIndex);
+            xp.Parameters.AddWithValue("@status", status);
             TaskSystem.tools.InsertUpdateData(xp);
         }
 
-        private void updateDataBezZmianyProjektu(String id, String title, String projectId, String typeId, String priorityId, String sprintId, String affectVersionId, String fixVersionId, String assigneId, String summary)
+        private void updateDataBezZmianyProjektu(String id, String title,  String typeId, String priorityId, String sprintId, String affectVersionId, String fixVersionId, String assigneId, String summary, String status)
         {
-            SqlCommand xp = new SqlCommand("Update issue set title=@title,project_id=@project_id,type_id=@type_id, priority_id=@priority_id, sprint_id=@sprint_id,affect_version_id=@affect_version_id, fix_version_id=@fix_version_id, assigne_id=@assigne_id, summary=@summary where id=@id;");
+            SqlCommand xp = new SqlCommand("Update issue set title=@title,type_id=@type_id, priority_id=@priority_id, sprint_id=@sprint_id,affect_version_id=@affect_version_id, fix_version_id=@fix_version_id, assigne_id=@assigne_id, summary=@summary, status=@status where id=@id;");
             xp.Parameters.AddWithValue("@id", id);
             xp.Parameters.AddWithValue("@title", title);
-            xp.Parameters.AddWithValue("@project_id", projectId);
             xp.Parameters.AddWithValue("@type_id", typeId);
             xp.Parameters.AddWithValue("@priority_id", priorityId);
             xp.Parameters.AddWithValue("@sprint_id", sprintId);
@@ -115,6 +97,7 @@ namespace TaskSystem.Issues
             xp.Parameters.AddWithValue("@fix_version_id", fixVersionId);
             xp.Parameters.AddWithValue("@assigne_id", assigneId);
             xp.Parameters.AddWithValue("@summary", summary);
+            xp.Parameters.AddWithValue("@status", status);
             TaskSystem.tools.InsertUpdateData(xp);
         }
 
@@ -143,18 +126,11 @@ namespace TaskSystem.Issues
             {
                 GridViewRow gvrow = GridView1.Rows[index];
 
+                hfCount.Value = HttpUtility.HtmlDecode(gvrow.Cells[0].Text).ToString();
                 dataProject();
                 refreshProject(HttpUtility.HtmlDecode(gvrow.Cells[0].Text).ToString());
-                hfCount.Value = HttpUtility.HtmlDecode(gvrow.Cells[0].Text).ToString();
+                dataProject(DropDownList1.SelectedItem.Value);
                 Text3.Value = HttpUtility.HtmlDecode(gvrow.Cells[1].Text).ToString();
-                //DropDownList1.SelectedItem.Text = HttpUtility.HtmlDecode(gvrow.Cells[2].Text).ToString();
-                //DropDownList2.SelectedItem.Text = HttpUtility.HtmlDecode(gvrow.Cells[6].Text).ToString();
-                //DropDownList3.SelectedItem.Text = HttpUtility.HtmlDecode(gvrow.Cells[5].Text).ToString();
-                //DropDownList4.SelectedItem.Text = HttpUtility.HtmlDecode(gvrow.Cells[7].Text).ToString();
-                //DropDownList5.SelectedItem.Text = HttpUtility.HtmlDecode(gvrow.Cells[9].Text).ToString();
-                //DropDownList6.SelectedItem.Text = HttpUtility.HtmlDecode(gvrow.Cells[10].Text).ToString();
-                //DropDownList7.SelectedItem.Text = HttpUtility.HtmlDecode(gvrow.Cells[8].Text).ToString();
-                //TextArea1.Value = getSummary(HttpUtility.HtmlDecode(gvrow.Cells[0].Text).ToString());
 
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
                 sb.Append(@"<script type='text/javascript'>");
@@ -166,7 +142,7 @@ namespace TaskSystem.Issues
 
         private void refreshProject(String id)
         {
-            DataTable dt = TaskSystem.tools.GetData("select project.id,type.id, priority.id,sprint.id, issue.affect_version_id,issue.fix_version_id,users.id,issue.summary from issue join project on issue.project_id=project.id join type on type.id=issue.type_id join priority on priority.id = issue.priority_id join sprint on sprint.id=issue.sprint_id join users on users.id = issue.assigne_id where issue.id='" + id + "';");
+            DataTable dt = TaskSystem.tools.GetData("select project.id,type.id, priority.id,sprint.id, issue.affect_version_id,issue.fix_version_id,users.id,issue.summary, issue.status from issue join project on issue.project_id=project.id join type on type.id=issue.type_id join priority on priority.id = issue.priority_id join sprint on sprint.id=issue.sprint_id join users on users.id = issue.assigne_id where issue.id='" + id + "';");
             DropDownList1.SelectedValue = dt.Rows[0][0].ToString();
             DropDownList2.SelectedValue = dt.Rows[0][1].ToString();
             DropDownList3.SelectedValue = dt.Rows[0][2].ToString();
@@ -181,6 +157,7 @@ namespace TaskSystem.Issues
             }
             DropDownList7.SelectedValue = dt.Rows[0][6].ToString();
             TextArea1.Value = dt.Rows[0][7].ToString();
+            DropDownList8.SelectedValue = dt.Rows[0][8].ToString();
         }
 
         private void dataProject()
@@ -214,30 +191,32 @@ namespace TaskSystem.Issues
             DropDownList3.DataSource = dt4;
             DropDownList3.DataBind();
 
-            DataTable dt5 = TaskSystem.tools.GetData("SELECT [id], [name] FROM [sprint] ORDER BY [id]");
+            DataTable dt5 = TaskSystem.tools.GetData("SELECT distinct(sprint.id), sprint.name FROM [sprint] JOIN issue on issue.sprint_id=sprint.id WHERE sprint.status='open' OR issue.id='" + hfCount.Value + "' ORDER BY sprint.id");
             DropDownList4.Items.Clear();
             DropDownList4.DataTextField = "name";
             DropDownList4.DataValueField = "id";
             DropDownList4.DataSource = dt5;
             DropDownList4.DataBind();
+        }
 
-            //DataTable dt6 = TaskSystem.tools.GetData("SELECT [id], [version] FROM [project_version] WHERE [status]='released' ORDER BY [id]");
-           
-            //DropDownList5.Items.Clear();
-            //DropDownList5.Items.Add(new ListItem("", ""));
-            //DropDownList5.DataTextField = "version";
-            //DropDownList5.DataValueField = "id";
-            //DropDownList5.DataSource = dt6;
+        private void dataProject(String project_id)
+        {
+            DataTable dt6 = TaskSystem.tools.GetData("SELECT [id], [version] FROM [project_version] WHERE [status]='released' AND [project_id]='" + project_id + "' ORDER BY [id]");
+            DropDownList5.Items.Clear();
+            DropDownList5.DataTextField = "version";
+            DropDownList5.DataValueField = "id";
+            DropDownList5.DataSource = dt6;
+            DropDownList5.DataBind();
+            DropDownList5.Items.Insert(0, new ListItem("", ""));
 
-            //DropDownList5.DataBind();
+            DataTable dt7 = TaskSystem.tools.GetData("SELECT [id], [version] FROM [project_version] WHERE [status]='open' AND [project_id]='" + project_id + "' ORDER BY [id]");
+            DropDownList6.Items.Clear();
+            DropDownList6.DataTextField = "version";
+            DropDownList6.DataValueField = "id";
+            DropDownList6.DataSource = dt7;
+            DropDownList6.DataBind();
+            DropDownList6.Items.Insert(0, new ListItem("", ""));
 
-            //DataTable dt7 = TaskSystem.tools.GetData("SELECT [id], [version] FROM [project_version] WHERE [status]='open' ORDER BY [id]");
-            //DropDownList6.Items.Clear();
-            //DropDownList6.Items.Add(new ListItem("", ""));
-            //DropDownList6.DataTextField = "version";
-            //DropDownList6.DataValueField = "id";
-            //DropDownList6.DataSource = dt7;
-            //DropDownList6.DataBind();
         }
     }
 }

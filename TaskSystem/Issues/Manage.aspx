@@ -73,6 +73,20 @@
                                 </div>
                             </div>--%>
                             <div class="form-group">
+                                <label for="focusedinput" class="col-sm-2 control-label">Status</label>
+                                <div class="col-sm-8">
+                                    <asp:DropDownList ID="DropDownList8" AppendDataBoundItems="true" runat="server" class="form-control1">
+                                        <asp:ListItem Text="Open" Value="open" />
+                                        <asp:ListItem Text="In progress" Value="In progress" />
+                                        <asp:ListItem Text="Code review" Value="Code review" />
+                                        <asp:ListItem Text="Test" Value="Test" />
+                                        <asp:ListItem Text="Closed" Value="Closed" />
+                                        <asp:ListItem Text="Won't fix" Value="Won't fix" />
+                                        <asp:ListItem Text="Duplicate" Value="Duplicate" />
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="focusedinput" class="col-sm-2 control-label">Issue type</label>
                                 <div class="col-sm-8">
                                     <asp:DropDownList ID="DropDownList2" runat="server" class="form-control1">
