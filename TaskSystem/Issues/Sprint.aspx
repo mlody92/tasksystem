@@ -10,15 +10,26 @@
     <div class="bs-example5" data-example-id="default-media">
         <div class="media">
             <div class="panel-body1">
-                <asp:GridView ID="GridView1" runat="server" class="table table-striped" AutoGenerateColumns="False" DataKeyNames="id" OnRowCommand="GridView1_RowCommand">
+                Closed version:
+                <asp:GridView ID="GridView1" runat="server" class="table table-striped" AutoGenerateColumns="False" DataKeyNames="id">
                     <Columns>
                         <asp:BoundField DataField="id" HeaderText="id" SortExpression="id" />
                         <asp:BoundField DataField="name" HeaderText="Name" SortExpression="name" />
-                        <asp:ButtonField CommandName="editRecord" Text="Edit" ItemStyle-Width="10px" />
-                        <asp:ButtonField CommandName="deleteRecord" Text="Delete" ItemStyle-Width="10px" />
+                        <asp:BoundField DataField="status" HeaderText="Status" SortExpression="status" />
                     </Columns>
                 </asp:GridView>
                 <asp:HiddenField ID="hfCount" runat="server" Value="0" />
+                Open version:
+                <asp:GridView ID="GridView2" runat="server" class="table table-striped" AutoGenerateColumns="False" DataKeyNames="id" OnRowCommand="GridView1_RowCommand">
+                    <Columns>
+                        <asp:BoundField DataField="id" HeaderText="id" SortExpression="id" />
+                        <asp:BoundField DataField="name" HeaderText="Name" SortExpression="name" />
+                        <asp:BoundField DataField="status" HeaderText="Status" SortExpression="status" />
+                        <asp:ButtonField CommandName="editRecord" Text="Edit" ItemStyle-Width="10px" />
+                        <asp:ButtonField CommandName="deleteRecord" Text="Delete" ItemStyle-Width="10px" />
+                        <asp:ButtonField CommandName="closeRecord" Text="Close" ItemStyle-Width="10px" />
+                    </Columns>
+                </asp:GridView>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -103,4 +114,28 @@
         </div>
     </div>
 
+
+    <div id="releaseModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Close sprint</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        Are you sure you want to close this sprint?
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="Button9" class="btn btn-default" runat="server" Text="Confirm" CssClass="btn btn-info" OnClick="btnRelease_Click"/>
+                    <asp:Button ID="Button10" class="btn btn-default" runat="server" Text="Close" data-dismiss="modal" />
+                </div>
+            </div>
+
+        </div>
+    </div>
 </asp:Content>
