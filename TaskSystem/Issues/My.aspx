@@ -3,9 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h3 class="blank1">Issue</h3>
 
-
     <div class="bs-example5" data-example-id="default-media">
         <div class="media">
+            Search in issue:
+            <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
+            <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="Button1_Click"/>
+            <hr />
             <div class="panel-body1">
                 <asp:GridView ID="GridView1" runat="server" class="table table-striped" AutoGenerateColumns="False" DataKeyNames="id" OnRowCommand="GridView1_RowCommand">
                     <Columns>

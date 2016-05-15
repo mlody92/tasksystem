@@ -7,14 +7,25 @@
 
     <div class="bs-example5" data-example-id="default-media">
         <div class="media">
+             Search in issue:
+            <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
+            <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="Button1_Click"/>
+            <hr />
             <div class="panel-body1">
                 <asp:GridView ID="GridView1" runat="server" class="table table-striped" AutoGenerateColumns="False" DataKeyNames="id" OnRowCommand="GridView1_RowCommand">
                     <Columns>
                         <asp:BoundField DataField="id" HeaderText="id" SortExpression="id" />
-                        <asp:BoundField DataField="title" HeaderText="Title" SortExpression="title" />
+                        <asp:TemplateField ShowHeader="False" ItemStyle-Width="140px">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkButton1" runat="server" CommandName="view" Text='<%# Eval("title")%>' CommandArgument='<%#Eval("short")+"-"+Eval("issueIndex")%>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:BoundField DataField="project" HeaderText="Project" SortExpression="project" />
-                        <asp:BoundField DataField="short" HeaderText="Short" SortExpression="short" />
-                        <asp:BoundField DataField="issueIndex" HeaderText="IssueIndex" SortExpression="issueIndex" />
+                        <asp:TemplateField HeaderText="Sprawa">
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("short")+"-"+Eval("issueIndex")%>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:BoundField DataField="priority" HeaderText="Priority" SortExpression="priority" />
                         <asp:BoundField DataField="type" HeaderText="Type" SortExpression="type" />
                         <asp:BoundField DataField="sprint" HeaderText="Sprint" SortExpression="sprint" />
@@ -54,7 +65,7 @@
                                 <label for="focusedinput" class="col-sm-2 control-label">Project</label>
                                 <div class="col-sm-8">
 
-                                   <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                         <ContentTemplate>
                                             <%--<asp:DropDownList ID="DropDownList8" runat="server" OnSelectedIndexChanged="SelectedChange" EventName="SelectedChange" AppendDataBoundItems="true" class="form-control1" ClientIDMode="Static" AutoPostBack="true" />--%>
                                             <asp:DropDownList ID="DropDownList1" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="SelectedChange" EventName="SelectedChange" class="form-control1" AutoPostBack="true" />
@@ -114,7 +125,7 @@
                                         <ContentTemplate>
                                             <asp:DropDownList ID="DropDownList5" runat="server" AppendDataBoundItems="true" class="form-control1" />
                                         </ContentTemplate>
-                                       <%-- <Triggers>
+                                        <%-- <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="DropDownList5" />
                                         </Triggers>--%>
                                     </asp:UpdatePanel>
@@ -129,7 +140,7 @@
                                         <ContentTemplate>
                                             <asp:DropDownList ID="DropDownList6" runat="server" AppendDataBoundItems="true" class="form-control1" />
                                         </ContentTemplate>
-                                      <%--  <Triggers>
+                                        <%--  <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="DropDownList6" />
                                         </Triggers>--%>
                                     </asp:UpdatePanel>

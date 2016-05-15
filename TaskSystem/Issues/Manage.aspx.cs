@@ -15,7 +15,10 @@ namespace TaskSystem.Issues
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack)
+            {
                 refresh();
+            }
         }
 
         protected void SelectedChange(object sender, EventArgs e)
@@ -45,6 +48,10 @@ namespace TaskSystem.Issues
             }
             index = index + 1;
             return index.ToString();
+        }
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            refreshWithFilter(txtSearch.Text);
         }
 
         protected void Button2_Click(object sender, EventArgs e)
@@ -108,6 +115,13 @@ namespace TaskSystem.Issues
             GridView1.DataBind();
         }
 
+        private void refreshWithFilter(String text)
+        {
+            DataTable dt = TaskSystem.tools.GetData("select issue.id,issue.status,issue.issueIndex, issue.title, project.project, project.short,priority.name as priority, type.name as type, sprint.name as sprint, users.username,issue.affect_version_id as aff,issue.fix_version_id as fi, (select version from project_version where id=issue.affect_version_id) as affect,(select version from project_version where id=issue.fix_version_id) as fix from issue join project on issue.project_id=project.id join type on type.id=issue.type_id join priority on priority.id = issue.priority_id join sprint on sprint.id=issue.sprint_id join users on users.id = issue.assigne_id WHERE issue.title like '%" + text + "%' OR project.project like '%" + text + "%' OR priority.name like '%" + text + "%' OR issue.summary like '%" + text + "%';");
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+        }
+
         private void ShowMessageEdit(String name)
         {
 
@@ -121,9 +135,9 @@ namespace TaskSystem.Issues
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int index = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName.Equals("editRecord"))
             {
+                int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow gvrow = GridView1.Rows[index];
 
                 hfCount.Value = HttpUtility.HtmlDecode(gvrow.Cells[0].Text).ToString();
@@ -137,6 +151,11 @@ namespace TaskSystem.Issues
                 sb.Append("$('#editModal').modal('show');");
                 sb.Append(@"</script>");
                 ClientScript.RegisterStartupScript(this.GetType(), "editScript2", sb.ToString());
+            }
+            if (e.CommandName.Equals("view"))
+            {
+                string[] data = e.CommandArgument.ToString().Split('-');
+                Response.Redirect("~/Issues/View.aspx?" + data[0] + "-" + data[1]);
             }
         }
 
