@@ -10,11 +10,12 @@
                     <div class="switch-right-grid1">
                         <h3>AVAILABLE PROJECTS:</h3>
                         <ul>
-                        <asp:ListView ID="ListView1" runat="server" DataSourceID="SqlDataSource1">
-                            <ItemTemplate>
-                                <li><asp:Label runat="server" ID="lblResp"><%#Eval("project") %></asp:Label><li />
-                            </ItemTemplate>
-                        </asp:ListView>
+                            <asp:ListView ID="ListView1" runat="server" DataSourceID="SqlDataSource1">
+                                <ItemTemplate>
+                                    <li>
+                                        <asp:Label runat="server" ID="lblResp"><%#Eval("project") %></asp:Label><li />
+                                </ItemTemplate>
+                            </asp:ListView>
                         </ul>
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [project] FROM [project] ORDER BY [project]"></asp:SqlDataSource>
                     </div>
@@ -23,37 +24,22 @@
             <div class="col-md-4 switch-right">
                 <div class="switch-right-grid">
                     <div class="switch-right-grid1">
-                        <h3>MONTHLY STATS</h3>
-                        <p>Duis aute irure dolor in reprehenderit.</p>
+                        <h3>10 LAST MY ISSUES:</h3>
                         <ul>
-                            <li>Earning: $5,000 USD</li>
-                            <li>Items Sold: 400 Items</li>
-                            <li>Last Hour Sales: $2,434 USD</li>
+                            <asp:ListView ID="ListView2" runat="server">
+                                <ItemTemplate>
+                                    <%--<li><asp:Label runat="server" ID="lblResp"><%#Eval("short")+"-"+Eval("issueIndex")+" "+Eval("title") %> </asp:Label><li />--%>
+                                    <%--<li> <asp:LinkButton ID="LinkButton1" runat="server" CommandName="view" Text='<%#Eval("short")+"-"+Eval("issueIndex")+" "+Eval("title") %>' OnClick="Button1_Click"/>--%>
+                                    <li>
+                                        <asp:HyperLink ID="hpLinkSurname" runat="server" NavigateUrl='<%# "~/Issues/View.aspx?" + Eval("short")+"-"+Eval("issueIndex") %>' Text='<%#Eval("short")+"-"+Eval("issueIndex")+" "+Eval("title") %>' />
+                                    </li>
+                                </ItemTemplate>
+                            </asp:ListView>
                         </ul>
+
                     </div>
                 </div>
-                <div class="sparkline">
-                    <canvas id="Canvas2" height="150" width="480" style="width: 480px; height: 150px;"></canvas>
-                    <script>
-                        var barChartData = {
-                            labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Mon", "Tue", "Wed", "Thu"],
-                            datasets: [
-                                {
-                                    fillColor: "#8BC34A",
-                                    strokeColor: "#8BC34A",
-                                    data: [25, 40, 50, 65, 55, 30, 20, 10, 6, 4]
-                                },
-                                {
-                                    fillColor: "#8BC34A",
-                                    strokeColor: "#8BC34A",
-                                    data: [30, 45, 55, 70, 40, 25, 15, 8, 5, 2]
-                                }
-                            ]
 
-                        };
-                        new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
-                    </script>
-                </div>
             </div>
             <div class="col-md-4 switch-right">
                 <div class="switch-right-grid">
@@ -67,84 +53,68 @@
                         </ul>
                     </div>
                 </div>
-                <div class="sparkline">
-                    <!--graph-->
-                    <link rel="stylesheet" href="/css/graph.css">
-                    <script src="/js/jquery.flot.min.js"></script>
-                    <!--//graph-->
-                    <script>
-                        $(document).ready(function () {
-
-                            // Graph Data ##############################################
-                            var graphData = [{
-                                // Returning Visits
-                                data: [[4, 4500], [5, 3500], [6, 6550], [7, 7600], [8, 4500], [9, 3500], [10, 6550], ],
-                                color: '#FFCA28',
-                                points: { radius: 7, fillColor: '#fff' }
-                            }
-                            ];
-
-                            // Lines Graph #############################################
-                            $.plot($('#graph-lines'), graphData, {
-                                series: {
-                                    points: {
-                                        show: true,
-                                        radius: 1
-                                    },
-                                    lines: {
-                                        show: true
-                                    },
-                                    shadowSize: 0
-                                },
-                                grid: {
-                                    color: '#fff',
-                                    borderColor: 'transparent',
-                                    borderWidth: 10,
-                                    hoverable: true
-                                },
-                                xaxis: {
-                                    tickColor: 'transparent',
-                                    tickDecimals: false
-                                },
-                                yaxis: {
-                                    tickSize: 1200
-                                }
-                            });
-
-                            // Graph Toggle ############################################
-                            $('#graph-bars').hide();
-
-                            $('#lines').on('click', function (e) {
-                                $('#bars').removeClass('active');
-                                $('#graph-bars').fadeOut();
-                                $(this).addClass('active');
-                                $('#graph-lines').fadeIn();
-                                e.preventDefault();
-                            });
-
-                            $('#bars').on('click', function (e) {
-                                $('#lines').removeClass('active');
-                                $('#graph-lines').fadeOut();
-                                $(this).addClass('active');
-                                $('#graph-bars').fadeIn().removeClass('hidden');
-                                e.preventDefault();
-                            });
-
-                        });
-                    </script>
-                    <div id="Div3">
-                        <div class="graph-container">
-                            <div id="Div4"></div>
-                            <div id="Div5"></div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="clearfix"></div>
         </div>
     </div>
 
+    <%--/////--%>
 
+    <div class="graph_box1" style="padding: 1em 0 1em 0;">
+        <div class="col-md-6 grid_2 grid_2_bot">
+            <div class="grid_1">
+                <h4>Issues in open sprints</h4>
+                <div class="legend">
+                    <div id="os-Win-lbl">Open
+                        <asp:Label ID="Label1" runat="server" Text="100%"></asp:Label></div>
+                    <div id="os-Mac-lbl">In progress
+                        <asp:Label ID="Label2" runat="server" Text="100%"></asp:Label></div>
+                    <div id="os-Other-lbl">Code review
+                        <asp:Label ID="Label3" runat="server" Text="100%"></asp:Label></div>
+                    <div id="os-1-lbl">Test
+                        <asp:Label ID="Label4" runat="server" Text="100%"></asp:Label></div>
+                    <div id="os-2-lbl">Closed
+                        <asp:Label ID="Label5" runat="server" Text="100%"></asp:Label></div>
+                    <div id="os-3-lbl">Won't fix
+                        <asp:Label ID="Label6" runat="server" Text="100%"></asp:Label></div>
+                    <div id="os-4-lbl">Duplicate
+                        <asp:Label ID="Label7" runat="server" Text="100%"></asp:Label></div>
+                </div>
+
+                <canvas id="pie" height="315" width="470" style="width: 470px; height: 315px;"></canvas>
+
+            </div>
+
+        </div>
+        <div class="col-md-6 grid_2 grid_2_bot">
+            <div class="grid_1">
+                <h4>Issues in active sprint</h4>
+                <div class="legend">
+                    <div id="os-Win-lbl" class="os-Win-lbl">Open
+                        <asp:Label ID="Label8" runat="server" Text="100%"></asp:Label></div>
+                    <div id="os-Mac-lbl">In progress
+                        <asp:Label ID="Label9" runat="server" Text="100%"></asp:Label></div>
+                    <div id="os-Other-lbl">Code review
+                        <asp:Label ID="Label10" runat="server" Text="100%"></asp:Label></div>
+                    <div id="os-1-lbl">Test
+                        <asp:Label ID="Label11" runat="server" Text="100%"></asp:Label></div>
+                    <div id="os-2-lbl">Closed
+                        <asp:Label ID="Label12" runat="server" Text="100%"></asp:Label></div>
+                    <div id="os-3-lbl">Won't fix
+                        <asp:Label ID="Label13" runat="server" Text="100%"></asp:Label></div>
+                    <div id="os-4-lbl">Duplicate
+                        <asp:Label ID="Label14" runat="server" Text="100%"></asp:Label></div>
+                </div>
+
+                <canvas id="pie2" height="235" width="390" style="width: 390px; height: 235px;"></canvas>
+
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <%--/////--%>
 
 
 

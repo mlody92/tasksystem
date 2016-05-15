@@ -2744,6 +2744,30 @@ canvas#doughnut, canvas#line, canvas#polarArea, #bar, #pie, #radar{
 	float:right;
 	padding-left:.5em;
 }
+#os-1-lbl {
+    border-left:#231233 solid 1em;
+    padding-left: .5em;
+	font-size: 1em;
+    color: #777F8C;
+}
+#os-2-lbl {
+    border-left:#a32312 solid 1em;
+    padding-left: .5em;
+	font-size: 1em;
+    color: #777F8C;
+}
+#os-3-lbl {
+    border-left:#001290 solid 1em;
+    padding-left: .5em;
+	font-size: 1em;
+    color: #777F8C;
+}
+#os-4-lbl {
+    border-left:#000000 solid 1em;
+    padding-left: .5em;
+	font-size: 1em;
+    color: #777F8C;
+}
 #os-Win-lbl {
     border-left:#8BC34A solid 1em;
     padding-left: .5em;

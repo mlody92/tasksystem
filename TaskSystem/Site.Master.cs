@@ -64,7 +64,7 @@ namespace TaskSystem
             DropDownList3.DataSource = dt4;
             DropDownList3.DataBind();
 
-            DataTable dt5 = TaskSystem.tools.GetData("SELECT [id], [name] FROM [sprint] WHERE status='open' ORDER BY [id]");
+            DataTable dt5 = TaskSystem.tools.GetData("SELECT [id], [name] FROM [sprint] WHERE status='open' OR sprint.status='active' ORDER BY [id]");
             DropDownList4.DataTextField = "name";
             DropDownList4.DataValueField = "id";
             DropDownList4.DataSource = dt5;

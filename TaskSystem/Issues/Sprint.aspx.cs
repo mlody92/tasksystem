@@ -42,6 +42,10 @@ namespace TaskSystem.Issues
             DataTable dt2 = TaskSystem.tools.GetData("SELECT [id], [name], [status] FROM [sprint] WHERE status='open' ORDER BY [id]");
             GridView2.DataSource = dt2;
             GridView2.DataBind();
+
+            DataTable dt3 = TaskSystem.tools.GetData("SELECT [id], [name], [status] FROM [sprint] WHERE status='active' ORDER BY [id]");
+            GridView3.DataSource = dt3;
+            GridView3.DataBind();
         }
 
         private void insertData(String project)
@@ -128,13 +132,24 @@ namespace TaskSystem.Issues
 
             if (e.CommandName.Equals("closeRecord"))
             {
-                string code = GridView2.DataKeys[index].Value.ToString();
+                string code = GridView3.DataKeys[index].Value.ToString();
                 hfCount.Value = code.ToString();
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
                 sb.Append(@"<script type='text/javascript'>");
                 sb.Append("$('#releaseModal').modal('show');");
                 sb.Append(@"</script>");
                 ClientScript.RegisterStartupScript(this.GetType(), "ReleaseModalScript", sb.ToString());
+            }
+
+            if (e.CommandName.Equals("actualRecord"))
+            {
+                string code = GridView2.DataKeys[index].Value.ToString();
+                hfCount.Value = code.ToString();
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                sb.Append(@"<script type='text/javascript'>");
+                sb.Append("$('#actualModal').modal('show');");
+                sb.Append(@"</script>");
+                ClientScript.RegisterStartupScript(this.GetType(), "ActiveModalScript", sb.ToString());
             }
         }
 
@@ -143,6 +158,13 @@ namespace TaskSystem.Issues
             updateStatusData(hfCount.Value, "closed");
             refresh();
             ShowMessageStatus("closed");
+        }
+
+        protected void btnActive_Click(object sender, EventArgs e)
+        {
+            updateStatusData(hfCount.Value, "active");
+            refresh();
+            ShowMessageStatus("active");
         }
 
         private void ShowMessageStatus(String name)

@@ -210,7 +210,7 @@ namespace TaskSystem.Issues
             DropDownList3.DataSource = dt4;
             DropDownList3.DataBind();
 
-            DataTable dt5 = TaskSystem.tools.GetData("SELECT distinct(sprint.id), sprint.name FROM [sprint] JOIN issue on issue.sprint_id=sprint.id WHERE sprint.status='open' OR issue.id='" + hfCount.Value + "' ORDER BY sprint.id");
+            DataTable dt5 = TaskSystem.tools.GetData("SELECT distinct(sprint.id), sprint.name FROM [sprint], issue  WHERE (sprint.id=issue.sprint_id OR sprint.status='open' OR sprint.status='active') AND issue.id='" + hfCount.Value + "' ORDER BY sprint.id");
             DropDownList4.Items.Clear();
             DropDownList4.DataTextField = "name";
             DropDownList4.DataValueField = "id";

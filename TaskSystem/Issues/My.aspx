@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="My.aspx.cs" Inherits="TaskSystem.Issues.My" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h3 class="blank1">Issue</h3>
+    <h3 class="blank1">Issue in actual sprint</h3>
 
     <div class="bs-example5" data-example-id="default-media">
         <div class="media">
