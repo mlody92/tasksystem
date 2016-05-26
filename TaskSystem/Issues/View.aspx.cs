@@ -114,16 +114,28 @@ namespace TaskSystem.Issues
             DropDownList5.Items.Clear();
             DropDownList5.DataTextField = "version";
             DropDownList5.DataValueField = "id";
-            DropDownList5.DataSource = dt6;
-            DropDownList5.DataBind();
+            if (dt6 != null)
+            {
+                if (dt6.Rows.Count > 0)
+                {
+                    DropDownList5.DataSource = dt6;
+                    DropDownList5.DataBind();
+                }
+            }
             DropDownList5.Items.Insert(0, new ListItem("", ""));
 
             DataTable dt7 = TaskSystem.tools.GetData("SELECT [id], [version] FROM [project_version] WHERE [status]='open' AND [project_id]='" + project_id + "' ORDER BY [id]");
             DropDownList6.Items.Clear();
             DropDownList6.DataTextField = "version";
             DropDownList6.DataValueField = "id";
-            DropDownList6.DataSource = dt7;
-            DropDownList6.DataBind();
+            if (dt6 != null)
+            {
+                if (dt6.Rows.Count > 0)
+                {
+                    DropDownList6.DataSource = dt7;
+                    DropDownList6.DataBind();
+                }
+            }
             DropDownList6.Items.Insert(0, new ListItem("", ""));
         }
 

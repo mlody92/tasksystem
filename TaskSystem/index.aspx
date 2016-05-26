@@ -44,12 +44,17 @@
             <div class="col-md-4 switch-right">
                 <div class="switch-right-grid">
                     <div class="switch-right-grid1">
-                        <h3>ALLTIME STATS</h3>
-                        <p>Duis aute irure dolor in reprehenderit.</p>
-                        <ul>
-                            <li>Earning: $80,000 USD</li>
-                            <li>Items Sold: 8,000 Items</li>
-                            <li>Last Hour Sales: $75,434 USD</li>
+                        <h3>10 LAST ISSUES</h3>
+                       <ul>
+                            <asp:ListView ID="ListView3" runat="server">
+                                <ItemTemplate>
+                                    <%--<li><asp:Label runat="server" ID="lblResp"><%#Eval("short")+"-"+Eval("issueIndex")+" "+Eval("title") %> </asp:Label><li />--%>
+                                    <%--<li> <asp:LinkButton ID="LinkButton1" runat="server" CommandName="view" Text='<%#Eval("short")+"-"+Eval("issueIndex")+" "+Eval("title") %>' OnClick="Button1_Click"/>--%>
+                                    <li>
+                                        <asp:HyperLink ID="hpLinkSurname" runat="server" NavigateUrl='<%# "~/Issues/View.aspx?" + Eval("short")+"-"+Eval("issueIndex") %>' Text='<%#Eval("short")+"-"+Eval("issueIndex")+" "+Eval("title") %>' />
+                                    </li>
+                                </ItemTemplate>
+                            </asp:ListView>
                         </ul>
                     </div>
                 </div>

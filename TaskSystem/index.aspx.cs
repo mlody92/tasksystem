@@ -46,6 +46,10 @@ namespace TaskSystem
             DataTable dt = TaskSystem.tools.GetData("SELECT top 10 issue.issueIndex, project.short, issue.title FROM [issue] JOIN project on issue.project_id=project.id join users on users.id=issue.assigne_id where issue.assigne_id=" + user_id + " order by issue.id desc ");
             ListView2.DataSource = dt;
             ListView2.DataBind();
+
+            DataTable dt2 = TaskSystem.tools.GetData("SELECT top 10 issue.issueIndex, project.short, issue.title FROM [issue] JOIN project on issue.project_id=project.id join users on users.id=issue.assigne_id order by issue.id desc ");
+            ListView3.DataSource = dt2;
+            ListView3.DataBind();
         }
 
         private String[,] getNumberOpen()
