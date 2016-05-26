@@ -11,66 +11,60 @@
         <div class="tab-pane active" id="horizontal-form">
             <div class="form-horizontal">
                 <div class="form-group mb-n">
-                    <label class="col-md-2 control-label">Project</label>
-                    <div class="col-md-8">
+                    <label class="col-md-2 control-label" style="width:5%">Project</label>
+                    <div class="col-md-8" style="width:20%">
                         <input id="Text1" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
                     </div>
-                </div>
-                <div class="form-group mb-n">
-                    <label class="col-md-2 control-label">Title</label>
-                    <div class="col-md-8">
+
+                    <label class="col-md-2 control-label" style="width:5%">Title</label>
+                    <div class="col-md-8" style="width:20%">
                         <input id="Text2" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
                     </div>
-                </div>
-                <div class="form-group mb-n">
-                    <label class="col-md-2 control-label">Status</label>
-                    <div class="col-md-8">
+
+                     <label class="col-md-2 control-label" style="width:5%">Status</label>
+                    <div class="col-md-8" style="width:20%">
                         <input id="Text3" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
                     </div>
-                </div>
-                <div class="form-group mb-n">
-                    <label class="col-md-2 control-label">Sprint</label>
-                    <div class="col-md-8">
+
+                     <label class="col-md-2 control-label" style="width:5%">Sprint</label>
+                    <div class="col-md-8" style="width:20%">
                         <input id="Text9" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
                     </div>
                 </div>
                 <div class="form-group mb-n">
-                    <label class="col-md-2 control-label">Assigne</label>
-                    <div class="col-md-8">
+                    <label class="col-md-2 control-label" style="width:5%">Assigne</label>
+                    <div class="col-md-8" style="width:20%">
                         <input id="Text4" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
                     </div>
-                </div>
-                <div class="form-group mb-n">
-                    <label class="col-md-2 control-label">Priority</label>
-                    <div class="col-md-8">
+
+                    <label class="col-md-2 control-label" style="width:5%">Priority</label>
+                    <div class="col-md-8" style="width:20%">
                         <input id="Text5" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
                     </div>
-                </div>
 
-                <div class="form-group mb-n">
-                    <label class="col-md-2 control-label">Type</label>
-                    <div class="col-md-8">
+                     <label class="col-md-2 control-label" style="width:5%">Type</label>
+                    <div class="col-md-8" style="width:20%">
                         <input id="Text6" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
                     </div>
                 </div>
                 <div class="form-group mb-n">
-                    <label class="col-md-2 control-label">Description</label>
-                    <div class="col-md-8">
-                        <textarea class="form-control" id="TextArea1" cols="20" rows="10" runat="server"></textarea>
-                    </div>
-                </div>
-                <div class="form-group mb-n">
-                    <label class="col-md-2 control-label">Affect version</label>
-                    <div class="col-md-8">
+                    <label class="col-md-2 control-label" style="width:5%">Affect version</label>
+                    <div class="col-md-8" style="width:20%">
                         <input id="Text7" runat="server" type="text" class="form-control1" placeholder="" readonly="" />
                     </div>
-                </div>
-                <div class="form-group mb-n">
-                    <label class="col-md-2 control-label">Fix version</label>
-                    <div class="col-md-8">
+
+                     <label class="col-md-2 control-label" style="width:5%">Fix version</label>
+                    <div class="col-md-8" style="width:20%">
                         <input id="Text8" runat="server" type="text" class="form-control1" placeholder="" readonly="" />
                     </div>
                 </div>
+                <div class="form-group mb-n">
+                    <label class="col-md-2 control-label" style="width:7%">Description</label>
+                    <div class="col-md-8" style="width:93%">
+                        <textarea class="form-control" id="TextArea1" cols="10" rows="7" runat="server"></textarea>
+                    </div>
+                </div>
+               
             </div>
         </div>
         <div class="panel-footer">
@@ -108,7 +102,7 @@
                                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                         <ContentTemplate>
                                             <%--<asp:DropDownList ID="DropDownList8" runat="server" OnSelectedIndexChanged="SelectedChange" EventName="SelectedChange" AppendDataBoundItems="true" class="form-control1" ClientIDMode="Static" AutoPostBack="true" />--%>
-                                            <asp:DropDownList ID="DropDownList1" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="SelectedChange" EventName="SelectedChange" class="form-control1" AutoPostBack="true" />
+                                            <asp:DropDownList ID="DropDownList1" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="SelectedChange" EventName="SelectedChange" class="form-control1" AutoPostBack="true"  />
                                         </ContentTemplate>
                                         <%--<Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="DropDownList1" />

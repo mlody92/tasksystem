@@ -85,15 +85,6 @@ namespace TaskSystem.Issues {
         protected global::System.Web.UI.HtmlControls.HtmlInputText Text6;
         
         /// <summary>
-        /// TextArea1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea TextArea1;
-        
-        /// <summary>
         /// Text7 control.
         /// </summary>
         /// <remarks>
@@ -110,6 +101,15 @@ namespace TaskSystem.Issues {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText Text8;
+        
+        /// <summary>
+        /// TextArea1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea TextArea1;
         
         /// <summary>
         /// Button1 control.

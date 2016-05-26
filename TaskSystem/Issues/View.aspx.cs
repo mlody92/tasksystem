@@ -24,9 +24,12 @@ namespace TaskSystem.Issues
                 data = project.Split('-');
                 Label1.Text = project;
                 Label2.Text = getId(data[0], data[1]);
-                dataProject();
-                refresh(data[0], data[1]);
-                dataProject(Label2.Text);
+                if (!Page.IsPostBack)
+                {
+                    dataProject();
+                    refresh(data[0], data[1]);
+                    dataProject(DropDownList1.SelectedItem.Value);
+                }
             }
         }
 
@@ -37,15 +40,23 @@ namespace TaskSystem.Issues
 
         protected void Button2_Click(object sender, EventArgs e)
         {
+            String nextPro = data[1];
+            String shortPro;
             if (checkProjectId(Label2.Text) != DropDownList1.SelectedItem.Value)
             {
-                updateData(Label2.Text, Text10.Value, DropDownList1.SelectedItem.Value, DropDownList2.SelectedItem.Value, DropDownList3.SelectedItem.Value, DropDownList4.SelectedItem.Value, DropDownList5.SelectedItem.Value, DropDownList6.SelectedItem.Value, DropDownList7.SelectedItem.Value, TextArea2.InnerText, getNextProjectIndex(DropDownList1.SelectedValue), DropDownList8.SelectedItem.Value);
+                nextPro = getNextProjectIndex(DropDownList1.SelectedValue);
+                updateData(Label2.Text, Text10.Value, DropDownList1.SelectedItem.Value, DropDownList2.SelectedItem.Value, DropDownList3.SelectedItem.Value, DropDownList4.SelectedItem.Value, DropDownList5.SelectedItem.Value, DropDownList6.SelectedItem.Value, DropDownList7.SelectedItem.Value, TextArea2.InnerText, nextPro, DropDownList8.SelectedItem.Value);
+                shortPro = getShort(DropDownList1.SelectedItem.Value);
+                Response.Redirect("~/Issues/View.aspx?" + shortPro + "-" + nextPro);
             }
             else
             {
                 updateDataBezZmianyProjektu(Label2.Text, Text10.Value, DropDownList1.SelectedItem.Value, DropDownList2.SelectedItem.Value, DropDownList3.SelectedItem.Value, DropDownList4.SelectedItem.Value, DropDownList5.SelectedItem.Value, DropDownList6.SelectedItem.Value, DropDownList7.SelectedItem.Value, TextArea2.InnerText, DropDownList8.SelectedItem.Value);
+                refresh(data[0], nextPro);
             }
-            refresh(data[0], data[1]);
+            //Response.Redirect("~/Issues/View.aspx?PRO-" + nextPro);
+            //refresh(DropDownList1.SelectedItem.Value, nextPro);
+            
             ShowMessageEdit("Issue");
         }
 
@@ -114,13 +125,10 @@ namespace TaskSystem.Issues
             DropDownList5.Items.Clear();
             DropDownList5.DataTextField = "version";
             DropDownList5.DataValueField = "id";
-            if (dt6 != null)
+            DropDownList5.DataSource = dt6;
+            if (dt6.Rows.Count > 0)
             {
-                if (dt6.Rows.Count > 0)
-                {
-                    DropDownList5.DataSource = dt6;
-                    DropDownList5.DataBind();
-                }
+                DropDownList5.DataBind();
             }
             DropDownList5.Items.Insert(0, new ListItem("", ""));
 
@@ -204,6 +212,12 @@ namespace TaskSystem.Issues
         {
             // 1- id, 2-status, 3-indeks, 4-tytuł, 5-projekt,6 - skrót projektu, 7-nazwa priorytetu, 8- nazwa typu, 9 - sprint, 10-assigne, 11-summary, 12- affect_version, 13 - fix version, 14 -aff , 15 fix, 16 proId, 17 typeId, 18 sprintId 
             DataTable dt = TaskSystem.tools.GetData("select issue.id from issue join project on issue.project_id=project.id where project.short='" + proId + "' and issue.issueIndex='" + indeks + "';");
+            return dt.Rows[0][0].ToString();
+        }
+
+        private String getShort(String id)
+        {
+             DataTable dt = TaskSystem.tools.GetData("select short from project where id='" + id + "';");
             return dt.Rows[0][0].ToString();
         }
 
