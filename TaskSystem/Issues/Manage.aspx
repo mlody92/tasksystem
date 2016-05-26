@@ -87,7 +87,7 @@
                                 <label for="focusedinput" class="col-sm-2 control-label">Status</label>
                                 <div class="col-sm-8">
                                     <asp:DropDownList ID="DropDownList8" AppendDataBoundItems="true" runat="server" class="form-control1">
-                                        <asp:ListItem Text="Open" Value="open" />
+                                        <asp:ListItem Text="Open" Value="Open" />
                                         <asp:ListItem Text="In progress" Value="In progress" />
                                         <asp:ListItem Text="Code review" Value="Code review" />
                                         <asp:ListItem Text="Test" Value="Test" />

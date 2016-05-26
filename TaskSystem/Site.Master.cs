@@ -30,12 +30,64 @@ namespace TaskSystem
                 Label1.Text = Session["User_Fullname"].ToString();
                 //Label2.Text = Session["User_Role"].ToString(); 
                 Image1.ImageUrl = "data:image/jpg;base64," + Session["User_avatar"].ToString();
+                String[,] data = getNumberOpen();
+
+                Label2.Text = "You have " + data[7, 1] + " issues";
+                Label3.Text = data[0, 1];
+                Label4.Text = data[1, 1];
+                Label5.Text = data[2, 1];
+                Label6.Text = data[3, 1];
+                Label7.Text = data[4, 1];
+                Label8.Text = data[5, 1];
+                Label9.Text = data[6, 1];
+                Label10.Text = data[8, 1];
+                openDiv.Style.Add("width", (Int32.Parse(data[0, 1].ToString()) * 100 / Int32.Parse(data[7, 1].ToString())).ToString() + "%");
+                inprogressDiv.Style.Add("width", (Int32.Parse(data[1, 1].ToString()) * 100 / Int32.Parse(data[7, 1].ToString())).ToString() + "%");
+                codereviewDiv.Style.Add("width", (Int32.Parse(data[2, 1].ToString()) * 100 / Int32.Parse(data[7, 1].ToString())).ToString() + "%");
+                testDiv.Style.Add("width", (Int32.Parse(data[3, 1].ToString()) * 100 / Int32.Parse(data[7, 1].ToString())).ToString() + "%");
+                closedDiv.Style.Add("width", (Int32.Parse(data[4, 1].ToString()) * 100 / Int32.Parse(data[7, 1].ToString())).ToString() + "%");
+                wontfixDiv.Style.Add("width", (Int32.Parse(data[5, 1].ToString()) * 100 / Int32.Parse(data[7, 1].ToString())).ToString() + "%");
+                duplicateDiv.Style.Add("width", (Int32.Parse(data[6, 1].ToString()) * 100 / Int32.Parse(data[7, 1].ToString())).ToString() + "%");
+                
+                
+                
                 
                 if (!Page.IsPostBack)
                 {
                     dataProject();
                 }
             }
+        }
+
+        private String[,] getNumberOpen()
+        {
+            String[,] data = new String[9, 2] { 
+            { "Open", "0" },
+            { "In progress", "0" },
+            { "Code review", "0" },
+            { "Test", "0" },
+            { "Closed", "0" },
+            { "Won't fix", "0" },
+            { "Duplicate", "0" },
+            { "All", "0"},
+            { "Current", "0"}
+            };
+
+            DataTable dt = TaskSystem.tools.GetData("select issue.status, count(*) from issue join sprint on issue.sprint_id=sprint.id where assigne_id="+Session["User_Id"].ToString()+" group by issue.status;");
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+
+                for (int j = 0; j < 7; j++)
+                {
+                    if (data[j, 0] == dt.Rows[i][0].ToString())
+                    {
+                        data[j, 1] = dt.Rows[i][1].ToString();
+                    }
+                }
+            }
+            data[7, 1] = (Int32.Parse(data[6, 1]) +Int32.Parse(data[5, 1]) + Int32.Parse(data[4, 1])+Int32.Parse(data[3, 1])+Int32.Parse(data[2, 1])+Int32.Parse(data[1, 1])+Int32.Parse(data[0, 1])).ToString();
+            data[8, 1] = (Int32.Parse(data[3, 1]) + Int32.Parse(data[2, 1]) + Int32.Parse(data[1, 1]) + Int32.Parse(data[0, 1])).ToString();
+            return data;
         }
 
         private void dataProject()
