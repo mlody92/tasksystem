@@ -29,6 +29,7 @@ namespace TaskSystem.Issues
                     dataProject();
                     refresh(data[0], data[1]);
                     dataProject(DropDownList1.SelectedItem.Value);
+                    this.PopulateComments(Label2.Text);
                 }
             }
         }
@@ -59,6 +60,30 @@ namespace TaskSystem.Issues
             
             ShowMessageEdit("Issue");
         }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+
+            addComment(TextArea3.Value, Session["User_Id"].ToString(), Label2.Text, DateTime.Now.ToString("HH:mm dd-MM-yyyy"));
+            refresh(data[0], data[1]);
+
+            this.PopulateComments(Label2.Text);
+            ShowMessageEdit("Issue");
+        }
+
+        private void PopulateComments(String issue_id)
+        {
+            DataTable dt2 = TaskSystem.tools.GetData("SELECT [text], [time], (Select fullname from users where id=user_id) as users, (Select avatar from users where id=user_id) as avatar,'' as avatar2  FROM [comment] where issue_id = "+ issue_id+" ORDER BY [id]");
+            
+            for(int i=0;i<dt2.Rows.Count;i++){
+                byte[] bytes = (byte[])dt2.Rows[i][3];
+                dt2.Rows[i][4] = "data:image/jpg;base64," + Convert.ToBase64String(bytes, 0, bytes.Length);
+
+            }
+            this.rptComments.DataSource = dt2;
+            this.rptComments.DataBind();
+        }
+
 
         private void ShowMessageEdit(String name)
         {
@@ -111,6 +136,8 @@ namespace TaskSystem.Issues
             DropDownList7.SelectedValue = dt.Rows[0][19].ToString();
             DropDownList8.SelectedValue = dt.Rows[0][2].ToString();
             TextArea2.Value = dt.Rows[0][10].ToString();
+
+
         }
 
 
@@ -253,6 +280,16 @@ namespace TaskSystem.Issues
             xp.Parameters.AddWithValue("@assigne_id", assigneId);
             xp.Parameters.AddWithValue("@summary", summary);
             xp.Parameters.AddWithValue("@status", status);
+            TaskSystem.tools.InsertUpdateData(xp);
+        }
+
+        private void addComment(String text, String user_id, String issue_id, String time)
+        {
+            SqlCommand xp = new SqlCommand("Insert into comment(text,user_id,time,issue_id) values (@text,@user_id,@time,@issue_id);");
+            xp.Parameters.AddWithValue("@text", text);
+            xp.Parameters.AddWithValue("@user_id", user_id);
+            xp.Parameters.AddWithValue("@issue_id", issue_id);
+            xp.Parameters.AddWithValue("@time", time);
             TaskSystem.tools.InsertUpdateData(xp);
         }
     }

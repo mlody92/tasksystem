@@ -5,66 +5,99 @@
     <h3 class="blank1">Issue</h3>
 
     <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editModal">Edit</button>
+    <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#comment">Add comment</button>
+
 
     <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
     <div class="media">
         <div class="tab-pane active" id="horizontal-form">
             <div class="form-horizontal">
                 <div class="form-group mb-n">
-                    <label class="col-md-2 control-label" style="width:5%">Project</label>
-                    <div class="col-md-8" style="width:20%">
+                    <label class="col-md-2 control-label" style="width: 5%">Project</label>
+                    <div class="col-md-8" style="width: 20%">
                         <input id="Text1" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
                     </div>
 
-                    <label class="col-md-2 control-label" style="width:5%">Title</label>
-                    <div class="col-md-8" style="width:20%">
+                    <label class="col-md-2 control-label" style="width: 5%">Title</label>
+                    <div class="col-md-8" style="width: 20%">
                         <input id="Text2" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
                     </div>
 
-                     <label class="col-md-2 control-label" style="width:5%">Status</label>
-                    <div class="col-md-8" style="width:20%">
+                    <label class="col-md-2 control-label" style="width: 5%">Status</label>
+                    <div class="col-md-8" style="width: 20%">
                         <input id="Text3" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
                     </div>
 
-                     <label class="col-md-2 control-label" style="width:5%">Sprint</label>
-                    <div class="col-md-8" style="width:20%">
+                    <label class="col-md-2 control-label" style="width: 5%">Sprint</label>
+                    <div class="col-md-8" style="width: 20%">
                         <input id="Text9" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
                     </div>
                 </div>
                 <div class="form-group mb-n">
-                    <label class="col-md-2 control-label" style="width:5%">Assigne</label>
-                    <div class="col-md-8" style="width:20%">
+                    <label class="col-md-2 control-label" style="width: 5%">Assigne</label>
+                    <div class="col-md-8" style="width: 20%">
                         <input id="Text4" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
                     </div>
 
-                    <label class="col-md-2 control-label" style="width:5%">Priority</label>
-                    <div class="col-md-8" style="width:20%">
+                    <label class="col-md-2 control-label" style="width: 5%">Priority</label>
+                    <div class="col-md-8" style="width: 20%">
                         <input id="Text5" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
                     </div>
 
-                     <label class="col-md-2 control-label" style="width:5%">Type</label>
-                    <div class="col-md-8" style="width:20%">
+                    <label class="col-md-2 control-label" style="width: 5%">Type</label>
+                    <div class="col-md-8" style="width: 20%">
                         <input id="Text6" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
                     </div>
                 </div>
                 <div class="form-group mb-n">
-                    <label class="col-md-2 control-label" style="width:5%">Affect version</label>
-                    <div class="col-md-8" style="width:20%">
+                    <label class="col-md-2 control-label" style="width: 5%">Affect version</label>
+                    <div class="col-md-8" style="width: 20%">
                         <input id="Text7" runat="server" type="text" class="form-control1" placeholder="" readonly="" />
                     </div>
 
-                     <label class="col-md-2 control-label" style="width:5%">Fix version</label>
-                    <div class="col-md-8" style="width:20%">
+                    <label class="col-md-2 control-label" style="width: 5%">Fix version</label>
+                    <div class="col-md-8" style="width: 20%">
                         <input id="Text8" runat="server" type="text" class="form-control1" placeholder="" readonly="" />
                     </div>
                 </div>
                 <div class="form-group mb-n">
-                    <label class="col-md-2 control-label" style="width:7%">Description</label>
-                    <div class="col-md-8" style="width:93%">
+                    <label class="col-md-2 control-label" style="width: 7%">Description</label>
+                    <div class="col-md-8" style="width: 43%">
                         <textarea class="form-control" id="TextArea1" cols="10" rows="7" runat="server"></textarea>
                     </div>
+
+                    <div class="col-md-4 span_8" style="width: 50%">
+                        <div class="activity_box">
+                            <h3>Comments</h3>
+                            <div class="scrollbar scrollbar1" id="style-2">
+
+                                <asp:Repeater ID="rptComments" runat="server">
+                                    <ItemTemplate>
+
+                                        <div class="activity-row">
+                                            <div class="col-xs-3 activity-img">
+                                                <asp:Image ID="Image1"  class="img-responsive" Width="50px" Height="50px" runat="server" ImageUrl='<%# Bind("avatar2") %>'  />
+                                            </div>
+                                            <div class="col-xs-7 activity-desc">
+                                                <h5> <asp:Label ID="Label3" runat="server" Text='<%# Eval("users") %>'></asp:Label></h5>
+                                                <p>
+                                                    <asp:Label ID="lblCommentBody"  runat="server" Text='<%# Eval("text") %>' Width="300px"></asp:Label>
+
+                                                </p>
+                                            </div>
+                                            <div class="col-xs-2 activity-desc1">
+                                                <h6><asp:Label ID="Label4" runat="server" Text='<%# Eval("time") %>'></asp:Label></h6>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
                 </div>
-               
             </div>
         </div>
         <div class="panel-footer">
@@ -102,7 +135,7 @@
                                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                         <ContentTemplate>
                                             <%--<asp:DropDownList ID="DropDownList8" runat="server" OnSelectedIndexChanged="SelectedChange" EventName="SelectedChange" AppendDataBoundItems="true" class="form-control1" ClientIDMode="Static" AutoPostBack="true" />--%>
-                                            <asp:DropDownList ID="DropDownList1" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="SelectedChange" EventName="SelectedChange" class="form-control1" AutoPostBack="true"  />
+                                            <asp:DropDownList ID="DropDownList1" runat="server" AppendDataBoundItems="true" OnSelectedIndexChanged="SelectedChange" EventName="SelectedChange" class="form-control1" AutoPostBack="true" />
                                         </ContentTemplate>
                                         <%--<Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="DropDownList1" />
@@ -219,5 +252,36 @@
             </div>
         </div>
     </div>
+
+    <div id="comment" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add comment</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group mb-n">
+                            <div class="form-group">
+                                <label for="focusedinput" class="col-sm-2 control-label">Comment</label>
+                                <div class="col-sm-8">
+                                    <textarea id="TextArea3" cols="41" rows="5" runat="server"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="Button4" class="btn btn-default" runat="server" Text="Save" OnClick="Button3_Click" />
+                    <asp:Button ID="Button5" class="btn btn-default" runat="server" Text="Close" data-dismiss="modal" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <asp:Label ID="Label2" runat="server" Text="" Visible="false"></asp:Label>
 </asp:Content>
