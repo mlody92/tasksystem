@@ -15,6 +15,8 @@ namespace TaskSystem.Issues
     {
         String project;
         string[] data;
+        int iloscCom;
+        string referer;
         protected void Page_Load(object sender, EventArgs e)
         {
             String query = Request.Url.Query;
@@ -30,13 +32,16 @@ namespace TaskSystem.Issues
                     refresh(data[0], data[1]);
                     dataProject(DropDownList1.SelectedItem.Value);
                     this.PopulateComments(Label2.Text);
+                    Label5.Text = "Comments (" + iloscCom + ")";
+
+                    referer = Request.UrlReferrer.ToString();
                 }
             }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Issues/My.aspx");
+            Response.Redirect(Request.UrlReferrer.ToString());
         }
 
         protected void Button2_Click(object sender, EventArgs e)
@@ -57,24 +62,24 @@ namespace TaskSystem.Issues
             }
             //Response.Redirect("~/Issues/View.aspx?PRO-" + nextPro);
             //refresh(DropDownList1.SelectedItem.Value, nextPro);
-            
+            addComment("User edited issue details.", Session["User_Id"].ToString(), Label2.Text, DateTime.Now.ToString("HH:mm dd-MM-yyyy"));
             ShowMessageEdit("Issue");
         }
 
         protected void Button3_Click(object sender, EventArgs e)
         {
 
+            ShowMessageEdit("Issue");
             addComment(TextArea3.Value, Session["User_Id"].ToString(), Label2.Text, DateTime.Now.ToString("HH:mm dd-MM-yyyy"));
             refresh(data[0], data[1]);
 
             this.PopulateComments(Label2.Text);
-            ShowMessageEdit("Issue");
         }
 
         private void PopulateComments(String issue_id)
         {
             DataTable dt2 = TaskSystem.tools.GetData("SELECT [text], [time], (Select fullname from users where id=user_id) as users, (Select avatar from users where id=user_id) as avatar,'' as avatar2  FROM [comment] where issue_id = "+ issue_id+" ORDER BY [id]");
-            
+            iloscCom = dt2.Rows.Count;
             for(int i=0;i<dt2.Rows.Count;i++){
                 byte[] bytes = (byte[])dt2.Rows[i][3];
                 dt2.Rows[i][4] = "data:image/jpg;base64," + Convert.ToBase64String(bytes, 0, bytes.Length);
@@ -111,7 +116,8 @@ namespace TaskSystem.Issues
 
             Text1.Value = dt.Rows[0][4].ToString();
             Text2.Value = dt.Rows[0][3].ToString();
-            Text3.Value = dt.Rows[0][1].ToString();
+            //Text3.Value = dt.Rows[0][1].ToString();
+            DropDownList9.SelectedValue = dt.Rows[0][1].ToString();
             Text4.Value = dt.Rows[0][9].ToString();
             Text5.Value = dt.Rows[0][6].ToString();
             Text6.Value = dt.Rows[0][7].ToString();
@@ -134,7 +140,7 @@ namespace TaskSystem.Issues
                 DropDownList6.SelectedValue = dt.Rows[0][12].ToString();
             }
             DropDownList7.SelectedValue = dt.Rows[0][19].ToString();
-            DropDownList8.SelectedValue = dt.Rows[0][2].ToString();
+            DropDownList8.SelectedValue = dt.Rows[0][1].ToString();
             TextArea2.Value = dt.Rows[0][10].ToString();
 
 
@@ -144,6 +150,13 @@ namespace TaskSystem.Issues
         protected void SelectedChange(object sender, EventArgs e)
         {
             dataProject(DropDownList1.SelectedItem.Value);
+        }
+
+        protected void SelectedChange2(object sender, EventArgs e)
+        {
+            updateStatus(Label2.Text, DropDownList9.SelectedItem.Value);
+            addComment("Status: " + DropDownList8.SelectedValue + " -> " + DropDownList9.SelectedItem.Value, Session["User_Id"].ToString(), Label2.Text, DateTime.Now.ToString("HH:mm dd-MM-yyyy"));
+            Response.Redirect("~/Issues/View.aspx?" + data[0] + "-" + data[1]);
         }
 
         private void dataProject(String project_id)
@@ -290,6 +303,14 @@ namespace TaskSystem.Issues
             xp.Parameters.AddWithValue("@user_id", user_id);
             xp.Parameters.AddWithValue("@issue_id", issue_id);
             xp.Parameters.AddWithValue("@time", time);
+            TaskSystem.tools.InsertUpdateData(xp);
+        }
+
+        private void updateStatus(String id, String status)
+        {
+            SqlCommand xp = new SqlCommand("Update issue set status=@status where id=@id;");
+            xp.Parameters.AddWithValue("@id", id);
+            xp.Parameters.AddWithValue("@status", status);
             TaskSystem.tools.InsertUpdateData(xp);
         }
     }

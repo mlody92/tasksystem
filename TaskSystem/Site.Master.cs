@@ -178,5 +178,15 @@ namespace TaskSystem
             index=index+1;
             return index.ToString();
         }
+
+        private void addComment(String text, String user_id, String issue_id, String time)
+        {
+            SqlCommand xp = new SqlCommand("Insert into comment(text,user_id,time,issue_id) values (@text,@user_id,@time,@issue_id);");
+            xp.Parameters.AddWithValue("@text", text);
+            xp.Parameters.AddWithValue("@user_id", user_id);
+            xp.Parameters.AddWithValue("@issue_id", issue_id);
+            xp.Parameters.AddWithValue("@time", time);
+            TaskSystem.tools.InsertUpdateData(xp);
+        }
     }
 }

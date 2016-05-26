@@ -15,60 +15,79 @@
                 <div class="form-group mb-n">
                     <label class="col-md-2 control-label" style="width: 5%">Project</label>
                     <div class="col-md-8" style="width: 20%">
-                        <input id="Text1" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
+                        <input id="Text1" runat="server" type="text" class="form-control1" readonly="" />
                     </div>
 
                     <label class="col-md-2 control-label" style="width: 5%">Title</label>
                     <div class="col-md-8" style="width: 20%">
-                        <input id="Text2" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
+                        <input id="Text2" runat="server" type="text" class="form-control1" readonly="" />
+                    </div>
+
+
+
+                    <%--<label class="col-md-2 control-label" style="width: 5%">Status</label>--%>
+                    <%--<div class="col-md-8" style="width: 20%">
+                        <input id="Text3" runat="server" type="text" class="form-control1" readonly="" />
+                    </div>--%>
+                    
+                    <label class="col-md-2 control-label" style="width: 5%">Sprint</label>
+                    <div class="col-md-8" style="width: 20%">
+                        <input id="Text9" runat="server" type="text" class="form-control1" readonly="" />
                     </div>
 
                     <label class="col-md-2 control-label" style="width: 5%">Status</label>
-                    <div class="col-md-8" style="width: 20%">
-                        <input id="Text3" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
-                    </div>
+                    <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                        <ContentTemplate>
+                            <%--<asp:DropDownList ID="DropDownList8" runat="server" OnSelectedIndexChanged="SelectedChange" EventName="SelectedChange" AppendDataBoundItems="true" class="form-control1" ClientIDMode="Static" AutoPostBack="true" />--%>
+                            <asp:DropDownList ID="DropDownList9" runat="server" class="form-control1" Width="20%" AppendDataBoundItems="true" OnSelectedIndexChanged="SelectedChange2" EventName="SelectedChange2" AutoPostBack="true">
+                                <asp:ListItem Text="Open" Value="open" />
+                                <asp:ListItem Text="In progress" Value="In progress" />
+                                <asp:ListItem Text="Code review" Value="Code review" />
+                                <asp:ListItem Text="Test" Value="Test" />
+                                <asp:ListItem Text="Closed" Value="Closed" />
+                                <asp:ListItem Text="Won't fix" Value="Won't fix" />
+                                <asp:ListItem Text="Duplicate" Value="Duplicate" />
+                            </asp:DropDownList>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
 
-                    <label class="col-md-2 control-label" style="width: 5%">Sprint</label>
-                    <div class="col-md-8" style="width: 20%">
-                        <input id="Text9" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
-                    </div>
                 </div>
                 <div class="form-group mb-n">
                     <label class="col-md-2 control-label" style="width: 5%">Assigne</label>
                     <div class="col-md-8" style="width: 20%">
-                        <input id="Text4" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
+                        <input id="Text4" runat="server" type="text" class="form-control1" readonly="" />
                     </div>
 
                     <label class="col-md-2 control-label" style="width: 5%">Priority</label>
                     <div class="col-md-8" style="width: 20%">
-                        <input id="Text5" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
+                        <input id="Text5" runat="server" type="text" class="form-control1" readonly="" />
                     </div>
 
                     <label class="col-md-2 control-label" style="width: 5%">Type</label>
                     <div class="col-md-8" style="width: 20%">
-                        <input id="Text6" runat="server" type="text" class="form-control1" placeholder="Readonly" readonly="" />
+                        <input id="Text6" runat="server" type="text" class="form-control1" readonly="" />
                     </div>
                 </div>
                 <div class="form-group mb-n">
                     <label class="col-md-2 control-label" style="width: 5%">Affect version</label>
                     <div class="col-md-8" style="width: 20%">
-                        <input id="Text7" runat="server" type="text" class="form-control1" placeholder="" readonly="" />
+                        <input id="Text7" runat="server" type="text" class="form-control1" readonly="" />
                     </div>
 
                     <label class="col-md-2 control-label" style="width: 5%">Fix version</label>
                     <div class="col-md-8" style="width: 20%">
-                        <input id="Text8" runat="server" type="text" class="form-control1" placeholder="" readonly="" />
+                        <input id="Text8" runat="server" type="text" class="form-control1" readonly="" />
                     </div>
                 </div>
                 <div class="form-group mb-n">
                     <label class="col-md-2 control-label" style="width: 7%">Description</label>
                     <div class="col-md-8" style="width: 43%">
-                        <textarea class="form-control" id="TextArea1" cols="10" rows="7" runat="server"></textarea>
+                        <textarea class="form-control" id="TextArea1" cols="10" rows="7" runat="server" readonly="true"></textarea>
                     </div>
 
                     <div class="col-md-4 span_8" style="width: 50%">
                         <div class="activity_box">
-                            <h3>Comments</h3>
+                            <h3><asp:Label ID="Label5" runat="server"></asp:Label></h3>
                             <div class="scrollbar scrollbar1" id="style-2">
 
                                 <asp:Repeater ID="rptComments" runat="server">
@@ -76,17 +95,19 @@
 
                                         <div class="activity-row">
                                             <div class="col-xs-3 activity-img">
-                                                <asp:Image ID="Image1"  class="img-responsive" Width="50px" Height="50px" runat="server" ImageUrl='<%# Bind("avatar2") %>'  />
+                                                <asp:Image ID="Image1" class="img-responsive" Width="50px" Height="50px" runat="server" ImageUrl='<%# Bind("avatar2") %>' />
                                             </div>
                                             <div class="col-xs-7 activity-desc">
-                                                <h5> <asp:Label ID="Label3" runat="server" Text='<%# Eval("users") %>'></asp:Label></h5>
+                                                <h5>
+                                                    <asp:Label ID="Label3" runat="server" Text='<%# Eval("users") %>'></asp:Label></h5>
                                                 <p>
-                                                    <asp:Label ID="lblCommentBody"  runat="server" Text='<%# Eval("text") %>' Width="300px"></asp:Label>
+                                                    <asp:Label ID="lblCommentBody" runat="server" Text='<%# Eval("text") %>' Width="300px"></asp:Label>
 
                                                 </p>
                                             </div>
                                             <div class="col-xs-2 activity-desc1">
-                                                <h6><asp:Label ID="Label4" runat="server" Text='<%# Eval("time") %>'></asp:Label></h6>
+                                                <h6>
+                                                    <asp:Label ID="Label4" runat="server" Text='<%# Eval("time") %>'></asp:Label></h6>
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
@@ -147,7 +168,7 @@
                                 <label for="focusedinput" class="col-sm-2 control-label">Status</label>
                                 <div class="col-sm-8">
                                     <asp:DropDownList ID="DropDownList8" AppendDataBoundItems="true" runat="server" class="form-control1">
-                                        <asp:ListItem Text="Open" Value="open" />
+                                        <asp:ListItem Text="Open" Value="Open" />
                                         <asp:ListItem Text="In progress" Value="In progress" />
                                         <asp:ListItem Text="Code review" Value="Code review" />
                                         <asp:ListItem Text="Test" Value="Test" />
