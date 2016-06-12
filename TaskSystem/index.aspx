@@ -122,7 +122,7 @@
     <%--/////--%>
 
 
-
+<%--
     <div class="col_3">
         <div class="col-md-3 widget widget1">
             <div class="r3_counter_box">
@@ -529,7 +529,7 @@
         </div>
         <div class="clearfix"></div>
 
-    </div>
+    </div>--%>
 
 
 </asp:Content>

@@ -99,11 +99,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <li><a href="compose-mail.html">User access</a></li>
                             </ul>
                         </li>
-                        <%--<li class="menu-list"><a href="#"><i class="lnr lnr-indent-increase"></i><span>System</span></a>
+                        <li class="menu-list"><a href="#"><i class="lnr lnr-indent-increase"></i><span>Views</span></a>
                             <ul class="sub-menu-list">
-                                <li><a href="charts.html">Properities</a> </li>
+                                <li><a href="/Issues/My.aspx">My</a> </li>
+                                <li><a href="/Issues/MyAll.aspx">My all</a></li>
+                                <li><a href="/Issues/AllInSprint.aspx">All in sprint</a></li>
+                                <li><a href="/Issues/All.aspx">All issues</a></li>
                             </ul>
-                        </li>--%>
+                        </li>
                         <%--<li><a href="codes.html"><i class="lnr lnr-pencil"></i><span>Service</span></a></li>
                         <li><a href="media.html"><i class="lnr lnr-select"></i><span>Media Css</span></a></li>
                         <li class="menu-list"><a href="#"><i class="lnr lnr-book"></i><span>Pages</span></a>
@@ -136,7 +139,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="user-panel-top">
                             <div class="profile_details_left">
                                 <ul class="nofitications-dropdown">
-                                    <li class="dropdown">
+                                    <%--<li class="dropdown">
+                                        <%--
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-envelope"></i><span class="badge">3</span></a>
 
                                         <ul class="dropdown-menu">
@@ -181,7 +185,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 </div>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li>--%>
                                     <%-- <li class="login_box" id="loginContainer">
                                         <div class="search-box">
                                             <div id="sb-search" class="sb-search">
@@ -200,7 +204,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </script>
                                         <!-- //search-scripts -->
                                     </li>--%>
-                                    <li class="dropdown">
+                                   <%-- <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue">3</span></a>
                                         <ul class="dropdown-menu">
                                             <li>
@@ -244,7 +248,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 </div>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li>--%>
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-tasks"></i>
                                             <asp:Label ID="Label10" runat="server" class="badge blue1"/>
@@ -322,7 +326,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             </a></li>
                                             <li>
 											<div class="notification_bottom">
-												<a href="#">See all pending task</a>
+												<a href="/Issues/All.aspx">See all pending task</a>
 											</div> 
 										</li>
                                         </ul>
@@ -355,7 +359,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             </div>
                                         </a>
                                         <ul class="dropdown-menu drp-mnu">
-                                            <li><a href="#"><i class="fa fa-cog"></i>Settings</a> </li>
+<%--                                            <li><a href="#"><i class="fa fa-cog"></i>Settings</a> </li>--%>
                                             <li>
                                                 <asp:LinkButton ID="LinkButton2" runat="server" OnClick="LinkButton2_Click"><i class="fa fa-user"></i>Profile</asp:LinkButton>
                                             </li>

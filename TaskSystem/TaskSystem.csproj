@@ -137,8 +137,11 @@
     <Content Include="images\Tulips.jpg" />
     <Content Include="index.aspx" />
     <Content Include="issues.aspx" />
+    <Content Include="Issues\All.aspx" />
+    <Content Include="Issues\AllInSprint.aspx" />
     <Content Include="Issues\Manage.aspx" />
     <Content Include="Issues\My.aspx" />
+    <Content Include="Issues\MyAll.aspx" />
     <Content Include="Issues\Priority.aspx" />
     <Content Include="Issues\Sprint.aspx" />
     <Content Include="Issues\View.aspx" />
@@ -294,6 +297,20 @@
     <Compile Include="issues.aspx.designer.cs">
       <DependentUpon>issues.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Issues\All.aspx.cs">
+      <DependentUpon>All.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Issues\All.aspx.designer.cs">
+      <DependentUpon>All.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Issues\AllInSprint.aspx.cs">
+      <DependentUpon>AllInSprint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Issues\AllInSprint.aspx.designer.cs">
+      <DependentUpon>AllInSprint.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Issues\Manage.aspx.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -307,6 +324,13 @@
     </Compile>
     <Compile Include="Issues\My.aspx.designer.cs">
       <DependentUpon>My.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Issues\MyAll.aspx.cs">
+      <DependentUpon>MyAll.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Issues\MyAll.aspx.designer.cs">
+      <DependentUpon>MyAll.aspx</DependentUpon>
     </Compile>
     <Compile Include="Issues\Priority.aspx.cs">
       <DependentUpon>Priority.aspx</DependentUpon>
