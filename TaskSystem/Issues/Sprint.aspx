@@ -10,7 +10,7 @@
     <div class="bs-example5" data-example-id="default-media">
         <div class="media">
             <div class="panel-body1">
-                Closed version:
+                Closed sprint:
                 <asp:GridView ID="GridView1" runat="server" class="table table-striped" AutoGenerateColumns="False" DataKeyNames="id">
                     <Columns>
                         <asp:BoundField DataField="id" HeaderText="id" SortExpression="id" />
@@ -20,7 +20,7 @@
                 </asp:GridView>
                 <asp:HiddenField ID="hfCount" runat="server" Value="0" />
 
-                Actual version:
+                Actual sprint:
                 <asp:GridView ID="GridView3" runat="server" class="table table-striped" AutoGenerateColumns="False" DataKeyNames="id" OnRowCommand="GridView1_RowCommand">
                     <Columns>
                         <asp:BoundField DataField="id" HeaderText="id" SortExpression="id" />
@@ -31,7 +31,7 @@
                     </Columns>
                 </asp:GridView>
 
-                Open version:
+                Open sprint:
                 <asp:GridView ID="GridView2" runat="server" class="table table-striped" AutoGenerateColumns="False" DataKeyNames="id" OnRowCommand="GridView1_RowCommand">
                     <Columns>
                         <asp:BoundField DataField="id" HeaderText="id" SortExpression="id" />

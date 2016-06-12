@@ -100,7 +100,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </li>
                         <li class="menu-list"><a href="#"><i class="lnr lnr-indent-increase"></i><span>Views</span></a>
                             <ul class="sub-menu-list">
-                                <li><a href="/Issues/My.aspx">My</a> </li>
+                                <li><a href="/Issues/My.aspx">My in sprint</a> </li>
                                 <li><a href="/Issues/MyAll.aspx">My all</a></li>
                                 <li><a href="/Issues/AllInSprint.aspx">All in sprint</a></li>
                                 <li><a href="/Issues/All.aspx">All issues</a></li>
