@@ -96,7 +96,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li class="menu-list"><a href="#"><i class="lnr lnr-envelope"></i><span>Users</span></a>
                             <ul class="sub-menu-list">
                                 <li><a href="/Users/Manage.aspx">Manage</a> </li>
-                                <li><a href="compose-mail.html">User access</a></li>
                             </ul>
                         </li>
                         <li class="menu-list"><a href="#"><i class="lnr lnr-indent-increase"></i><span>Views</span></a>
